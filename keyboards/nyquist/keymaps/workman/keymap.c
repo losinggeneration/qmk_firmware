@@ -14,6 +14,7 @@ extern keymap_config_t keymap_config;
 #define _DVORAK 3
 #define _LOWER 4
 #define _RAISE 5
+#define _PLOVER 6
 #define _ADJUST 16
 
 enum custom_keycodes {
@@ -23,6 +24,8 @@ enum custom_keycodes {
   DVORAK,
   LOWER,
   RAISE,
+  PLOVER,
+  EXT_PLV,
   ADJUST,
 };
 
@@ -191,13 +194,34 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   _______, _______, _______, _______, _______, _______, _______, _______, KC_MUTE, KC_VOLD, KC_VOLU, _______ \
 ),
 
+/* Plover layer (http://opensteno.org)
+ * ,-----------------------------------------..-----------------------------------------.
+ * |      |      |      |      |      |      ||      |      |      |      |      |      |
+ * |------+------+------+------+------+------||------+------+------+------+------+------|
+ * |   #  |   #  |   #  |   #  |   #  |   #  ||   #  |   #  |   #  |   #  |   #  |   #  |
+ * |------+------+------+------+------+------||------+------+------+------+------+------|
+ * |      |   S  |   T  |   P  |   H  |   *  ||  *   |   F  |   P  |   L  |   T  |   D  |
+ * |------+------+------+------+------+------||------+------+------+------+------+------|
+ * |      |   S  |   K  |   W  |   R  |   *  ||  *   |   R  |   B  |   G  |   S  |   Z  |
+ * |------+------+------+------+------+------||------+------+------+------+------+------|
+ * | Exit |      |      |   A  |   O  |      ||      |   E  |   U  |      |      |      |
+ * `-----------------------------------------''-----------------------------------------'
+ */
+[_PLOVER] =  KEYMAP( \
+  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
+  KC_1,    KC_1,    KC_1,    KC_1,    KC_1,    KC_1,    KC_1,    KC_1,    KC_1,    KC_1,    KC_1,    KC_1,    \
+  XXXXXXX, KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_LBRC, \
+  XXXXXXX, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT, \
+  EXT_PLV, XXXXXXX, XXXXXXX, KC_C,    KC_V,    XXXXXXX, XXXXXXX, KC_N,    KC_M,    XXXXXXX, XXXXXXX, XXXXXXX  \
+),
+
 /* Adjust (Lower + Raise)
  * ,-----------------------------------------..-----------------------------------------.
  * | RESET|      |      |      |      |      ||      |      |      |      |      |      |
  * |------+------+------+------+------+------||------+------+------+------+------+------|
  * |      |  F1  |  F2  |  F3  |  F4  |      ||      |      |      |      |      |      |
  * |------+------+------+------+------+------||------+------+------+------+------+------|
- * |      |  F5  |  F6  |  F7  |  F8  |      ||      |Qwerty|Colmak|Workmn|Dvorak|      |
+ * |      |  F5  |  F6  |  F7  |  F8  |      ||      |Qwerty|Colmak|Workmn|Dvorak|Plover|
  * |------+------+------+------+------+------||------+------+------+------+------+------|
  * |      |  F9  |  F10 |  F11 |  F12 |      ||      |      |      |      |      |      |
  * |------+------+------+------+------+------||------+------+------+------+------+------|
@@ -207,7 +231,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_ADJUST] =  KEYMAP( \
    RESET , _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
   _______,  KC_F1 ,  KC_F2 ,  KC_F3 ,  KC_F4 , _______, _______, _______, _______, _______, _______, _______,\
-  _______,  KC_F5 ,  KC_F6 ,  KC_F7 ,  KC_F8 , _______, _______, QWERTY,  COLEMAK, WORKMAN, DVORAK,  _______, \
+  _______,  KC_F5 ,  KC_F6 ,  KC_F7 ,  KC_F8 , _______, _______, QWERTY,  COLEMAK, WORKMAN,  DVORAK,  PLOVER, \
   _______,  KC_F9 ,  KC_F10,  KC_F11,  KC_F12, _______, _______, _______, _______, _______, _______, _______, \
   _______,  TD_CTL, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______ \
 )
@@ -282,6 +306,34 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       } else {
         layer_off(_RAISE);
         update_tri_layer(_LOWER, _RAISE, _ADJUST);
+      }
+      return false;
+      break;
+    case PLOVER:
+      if (record->event.pressed) {
+        #ifdef AUDIO_ENABLE
+          stop_all_notes();
+          PLAY_SONG(plover_song);
+        #endif
+        layer_off(_RAISE);
+        layer_off(_LOWER);
+        layer_off(_ADJUST);
+        layer_on(_PLOVER);
+        if (!eeconfig_is_enabled()) {
+            eeconfig_init();
+        }
+        keymap_config.raw = eeconfig_read_keymap();
+        keymap_config.nkro = 1;
+        eeconfig_update_keymap(keymap_config.raw);
+      }
+      return false;
+      break;
+    case EXT_PLV:
+      if (record->event.pressed) {
+        #ifdef AUDIO_ENABLE
+          PLAY_SONG(plover_gb_song);
+        #endif
+        layer_off(_PLOVER);
       }
       return false;
       break;
