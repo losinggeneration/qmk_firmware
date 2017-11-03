@@ -12,9 +12,10 @@ extern keymap_config_t keymap_config;
 #define _COLEMAK 1
 #define _WORKMAN 2
 #define _DVORAK 3
-#define _LOWER 4
-#define _RAISE 5
-#define _PLOVER 6
+#define _GAME 4
+#define _LOWER 5
+#define _RAISE 6
+#define _PLOVER 7
 #define _ADJUST 16
 
 enum custom_keycodes {
@@ -22,6 +23,7 @@ enum custom_keycodes {
   COLEMAK,
   WORKMAN,
   DVORAK,
+  GAME,
   LOWER,
   RAISE,
   PLOVER,
@@ -86,7 +88,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC, \
   MT_ESC,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT, \
   OSM_LSFT,KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, MT_ENT , \
-  ADJUST,  TD_CTL, KC_LALT, KC_LGUI, LOWER,  KC_BSPC,  KC_SPC,  RAISE,   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT \
+  ADJUST,  TD_CTL,  KC_LALT, KC_LGUI, LOWER,   KC_BSPC, KC_SPC,  RAISE,   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT \
 ),
 
 /* Colemak
@@ -107,7 +109,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_TAB,  KC_Q,    KC_W,    KC_F,    KC_P,    KC_G,    KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN, KC_DEL, \
   MT_ESC,  KC_A,    KC_R,    KC_S,    KC_T,    KC_D,    KC_H,    KC_N,    KC_E,    KC_I,    KC_O,    KC_QUOT, \
   OSM_LSFT,KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_K,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, MT_ENT , \
-  ADJUST,  TD_CTL, KC_LALT, KC_LGUI, LOWER,  KC_BSPC,  KC_SPC,  RAISE,   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT \
+  ADJUST,  TD_CTL,  KC_LALT, KC_LGUI, LOWER,   KC_BSPC, KC_SPC,  RAISE,   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT \
 ),
 
 /* Workman
@@ -127,8 +129,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,   KC_0,    KC_DEL,  \
   KC_TAB,  KC_Q,    KC_D,    KC_R,    KC_W,    KC_B,    KC_J,    KC_F,    KC_U,    KC_P,   KC_SCLN, KC_BSPC, \
   MT_ESC,  KC_A,    KC_S,    KC_H,    KC_T,    KC_G,    KC_Y,    KC_N,    KC_E,    KC_O,   KC_I,    KC_QUOT, \
-  OSM_LSFT,KC_Z,    KC_X,    KC_M,    KC_C,    KC_V,    KC_K,    KC_L,   KC_COMM, KC_DOT,  KC_SLSH, MT_ENT , \
-  ADJUST,  TD_CTL, KC_LALT, KC_LGUI, LOWER,  KC_BSPC,  KC_SPC,  RAISE,  KC_LEFT, KC_DOWN,  KC_UP,   KC_RGHT  \
+  OSM_LSFT,KC_Z,    KC_X,    KC_M,    KC_C,    KC_V,    KC_K,    KC_L,    KC_COMM, KC_DOT, KC_SLSH, MT_ENT , \
+  ADJUST,  TD_CTL,  KC_LALT, KC_LGUI, LOWER,   KC_BSPC, KC_SPC,  RAISE,   KC_LEFT, KC_DOWN,KC_UP,   KC_RGHT  \
 ),
 
 /* Dvorak
@@ -149,7 +151,28 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_TAB,  KC_QUOT, KC_COMM, KC_DOT,  KC_P,    KC_Y,    KC_F,    KC_G,    KC_C,    KC_R,    KC_L,    KC_BSPC, \
   MT_ESC,  KC_A,    KC_O,    KC_E,    KC_U,    KC_I,    KC_D,    KC_H,    KC_T,    KC_N,    KC_S,    KC_SLSH, \
   OSM_LSFT,KC_SCLN, KC_Q,    KC_J,    KC_K,    KC_X,    KC_B,    KC_M,    KC_W,    KC_V,    KC_Z,    MT_ENT , \
-  ADJUST,  TD_CTL, KC_LALT, KC_LGUI, LOWER,  KC_BSPC,  KC_SPC,  RAISE,   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT \
+  ADJUST,  TD_CTL,  KC_LALT, KC_LGUI, LOWER,   KC_BSPC, KC_SPC,  RAISE,   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT \
+),
+
+/* Game (Qwerty without one shot modifiers)
+  ,-----------------------------------------..-----------------------------------------.
+ * |   `  |   1  |   2  |   3  |   4  |   5  ||   6  |   7  |   8  |   9  |   0  | Del  |
+ * |------+------+------+------+------+------||------+------+------+------+------+------|
+ * | Tab  |   Q  |   W  |   E  |   R  |   T  ||   Y  |   U  |   I  |   O  |   P  | Bksp |
+ * |------+------+------+------+------+------||------+------+------+------+------+------|
+ * | Esc  |   A  |   S  |   D  |   F  |   G  ||   H  |   J  |   K  |   L  |   ;  |  "   |
+ * |------+------+------+------+------+------||------+------+------+------+------+------|
+ * | Shift|   Z  |   X  |   C  |   V  |   B  ||   N  |   M  |   ,  |   .  |   /  |Enter |
+ * |------+------+------+------+------+------||------+------+------+------+------+------|
+ * |Adjust| Ctrl | Alt  | GUI  |Lower |Space ||Space |Raise | Left | Down |  Up  |Right |
+ * `-----------------------------------------'`-----------------------------------------'
+ */
+[_GAME] = KEYMAP( \
+  KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_DEL, \
+  KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC, \
+  KC_ESC,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT, \
+  KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_ENT , \
+  ADJUST,  KC_LCTL, KC_LALT, KC_LGUI, LOWER,   KC_SPC,  KC_SPC,  RAISE,   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT \
 ),
 
 /* Lower
@@ -219,7 +242,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-----------------------------------------..-----------------------------------------.
  * | RESET|      |      |      |      |      ||      |      |      |      |      |      |
  * |------+------+------+------+------+------||------+------+------+------+------+------|
- * |      |  F1  |  F2  |  F3  |  F4  |      ||      |      |      |      |      |      |
+ * |      |  F1  |  F2  |  F3  |  F4  |      ||      | Game |      |      |      |      |
  * |------+------+------+------+------+------||------+------+------+------+------+------|
  * |      |  F5  |  F6  |  F7  |  F8  |      ||      |Qwerty|Colmak|Workmn|Dvorak|Plover|
  * |------+------+------+------+------+------||------+------+------+------+------+------|
@@ -230,7 +253,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_ADJUST] =  KEYMAP( \
    RESET , _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
-  _______,  KC_F1 ,  KC_F2 ,  KC_F3 ,  KC_F4 , _______, _______, _______, _______, _______, _______, _______,\
+  _______,  KC_F1 ,  KC_F2 ,  KC_F3 ,  KC_F4 , _______, _______, GAME,    _______, _______, _______, _______,\
   _______,  KC_F5 ,  KC_F6 ,  KC_F7 ,  KC_F8 , _______, _______, QWERTY,  COLEMAK, WORKMAN,  DVORAK,  PLOVER, \
   _______,  KC_F9 ,  KC_F10,  KC_F11,  KC_F12, _______, _______, _______, _______, _______, _______, _______, \
   _______,  TD_CTL, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______ \
@@ -278,6 +301,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         #endif
         persistent_default_layer_set(1UL<<_WORKMAN);
       }
+      return false;
+      break;
+    case GAME:
+      default_layer_set(1UL<<_GAME);
       return false;
       break;
     case DVORAK:
