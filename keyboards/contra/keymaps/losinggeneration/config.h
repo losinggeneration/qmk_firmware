@@ -19,5 +19,7 @@ long with this program.  If not, see <http://www.gnu.org/licenses/>.
 #pragma once
 
 #define USE_MIT_LAYOUT
+// FIXME this isn't really correct, but works for now
+#define LAYOUT LAYOUT_ortho_4x12
 
 #define TAPPING_TERM 250
