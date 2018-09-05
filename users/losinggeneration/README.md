@@ -20,6 +20,7 @@ losinggeneration's ortholinear layout
   - Removed ISO ~,  ISO |, ISO #, ISO /, Media Next, & Media Play
   - Added PgUp, PgDn, Home, & End under the home row
   - Added Mute next to Vol-
+- Replaced layers: Colemak with Colemak-DH
 - New layers: Workman, Game, Numpad, & Mouse
 
 ## Layouts
@@ -45,17 +46,17 @@ keyboard.
   `-----------------------------------------'`-----------------------------------------'
 ```
 
-### Colemak
+### Colemak-DH
 
 ```
  ,-----------------------------------------.,-----------------------------------------.
  |   `  |   1  |   2  |   3  |   4  |   5  ||   6  |   7  |   8  |   9  |   0  | Del  |
  |------+------+------+------+------+------||------+------+------+------+------+------|
- | Tab  |   Q  |   W  |   F  |   P  |   G  ||   J  |   L  |   U  |   Y  |   ;  | Bksp |
+ | Tab  |   Q  |   W  |   F  |   P  |   B  ||   J  |   L  |   U  |   Y  |   ;  | Bksp |
  |------+------+------+------+------+------||------+------+------+------+------+------|
- | Esc  |   A  |   R  |   S  |   T  |   D  ||   H  |   N  |   E  |   I  |   O  |  "   |
+ | Esc  |   A  |   R  |   S  |   T  |   G  ||   K  |   N  |   E  |   I  |   O  |  "   |
  |------+------+------+------+------+------||------+------+------+------+------+------|
- | Shift|   Z  |   X  |   C  |   V  |   B  ||   K  |   M  |   ,  |   .  |   /  |Enter |
+ | Shift|   Z  |   X  |   C  |   D  |   V  ||   M  |   H  |   ,  |   .  |   /  |Enter |
  |------+------+------+------+------+------||------+------+------+------+------+------|
  |Adjust| Ctrl | Alt  | GUI  |Lower | Del  ||Space |Raise | Left | Down |  Up  |Right |
  `-----------------------------------------'`-----------------------------------------'
