@@ -20,6 +20,8 @@ long with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define CONFIG_USER_H
 
 #include QMK_KEYBOARD_CONFIG_H
+#include "losinggeneration-config.h"
+
 #define USE_MIT_LAYOUT
 // FIXME this isn't really correct, but works for now
 #define LAYOUT LAYOUT_ortho_4x12
