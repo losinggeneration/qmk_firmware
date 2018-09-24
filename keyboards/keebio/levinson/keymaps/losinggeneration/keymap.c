@@ -1,5 +1,4 @@
 #include QMK_KEYBOARD_H
-#include "losinggeneration-config.h"
 #include "losinggeneration-keymap.h"
 
 extern keymap_config_t keymap_config;
