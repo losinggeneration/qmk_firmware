@@ -20,6 +20,7 @@ long with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define CONFIG_USER_H
 
 #include QMK_KEYBOARD_CONFIG_H
+#include "losinggeneration-config.h"
 
 /* Use I2C or Serial, not both */
 
