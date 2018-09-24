@@ -19,11 +19,11 @@ long with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef LOSINGGENERATION_CONFIG_H
 #define LOSINGGENERATION_CONFIG_H
 
-#define MOUSEKEY_DELAY             100
-#define MOUSEKEY_INTERVAL          20
-#define MOUSEKEY_MAX_SPEED         10
-#define MOUSEKEY_TIME_TO_MAX       20
+#define MOUSEKEY_DELAY             50
+#define MOUSEKEY_INTERVAL          10
+#define MOUSEKEY_MAX_SPEED         20
+#define MOUSEKEY_TIME_TO_MAX       200
 #define MOUSEKEY_WHEEL_MAX_SPEED   8
-#define MOUSEKEY_WHEEL_TIME_TO_MAX 20
+#define MOUSEKEY_WHEEL_TIME_TO_MAX 250
 
 #endif
