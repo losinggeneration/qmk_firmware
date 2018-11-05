@@ -17,19 +17,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* Adjust (Lower + Raise)
  * ,-----------------------------------------..-----------------------------------------.
- * |      |  F1  |  F2  |  F3  |  F4  |BL Off|| RESET| Game |Numpad|Mouse |      |Sleep |
+ * |      |  F1  |  F2  |  F3  |  F4  |BL Tg || RESET| Game |Numpad|Mouse |      |Sleep |
  * |------+------+------+------+------+------||------+------+------+------+------+------|
- * |      |  F5  |  F6  |  F7  |  F8  |BL Tg ||Aud on|Qwerty|Colmak|Workmn|Dvorak|      |
+ * |      |  F5  |  F6  |  F7  |  F8  |BL Dec||Aud Tg|Qwerty|Colmak|Workmn|Dvorak|      |
  * |------+------+------+------+------+------||------+------+------+------+------+------|
- * | CAPS |  F9  |  F10 |  F11 |  F12 |BL On ||Audoff|      |      |      |  Up  |      |
+ * | CAPS |  F9  |  F10 |  F11 |  F12 |BL Inc||Mus Tg|      |      |      |  Up  |      |
  * |------+------+------+------+------+------||------+------+------+------+------+------|
  * |      |      |      |      |      |      ||      |      | XXX  | Left | Down |Right |
  * `-----------------------------------------''-----------------------------------------'
  */
 [_ADJUST] = CATMAP( \
-  _______, KC_F1  ,  KC_F2 , KC_F3  , KC_F4  , BL_OFF , RESET  , TO_GAME, TO_NUM , TO_MS  , _______, KC_SLEP, \
-  _______, KC_F5  ,  KC_F6 , KC_F7  , KC_F8  , BL_TOGG, AU_ON  , QWERTY , COLEMAK, WORKMAN, DVORAK , _______, \
-  KC_CAPS, KC_F9  ,  KC_F10, KC_F11 , KC_F12 , BL_ON  , AU_OFF , _______, _______, _______, KC_UP  , _______, \
+  _______, KC_F1  ,  KC_F2 , KC_F3  , KC_F4  , BL_TOGG, RESET  , TO_GAME, TO_NUM , TO_MS  , _______, KC_SLEP, \
+  _______, KC_F5  ,  KC_F6 , KC_F7  , KC_F8  , BL_DEC , AU_TOG , QWERTY , COLEMAK, WORKMAN, DVORAK , _______, \
+  KC_CAPS, KC_F9  ,  KC_F10, KC_F11 , KC_F12 , BL_INC , MU_TOG , _______, _______, _______, KC_UP  , _______, \
   _______, _______, _______, _______, _______, _______, _______, _______, XXXXXXX, KC_LEFT, KC_DOWN, KC_RGHT  \
 )
 
