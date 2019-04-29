@@ -16,6 +16,7 @@
 #define TO_GAME TO(_GAME)
 #define TO_MS   TO(_MOUSE)
 #define TO_NUM  TO(_NUMPAD)
+#define TO_MIDI TO(_MIDI)
 #define MO_ADJ  MO(_ADJUST)
 
 /* Mouse keys */
@@ -55,6 +56,7 @@
 #define _GAME    4
 #define _NUMPAD  5
 #define _MOUSE   6
+#define _MIDI    7
 #define _LOWER  14
 #define _RAISE  15
 #define _ADJUST 16
