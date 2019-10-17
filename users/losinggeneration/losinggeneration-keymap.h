@@ -100,7 +100,60 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 #define BOTTOM_MIT_ROW \
   TD_ADJ  ,TD_CTL , TD_ALT , TD_GUI , LOWER  , KC_SPC , KC_SPC , RAISE  , KC_LEFT, KC_DOWN, KC_UP  , KC_RGHT
 
-#ifdef USE_MIT_LAYOUT
+#ifdef USE_DACTYL_LAYOUT
+
+/*
+ * ,----------------------------------.              .----------------------------------.
+ * |Adjust| Home | End  | PgUp | PgDn |              | Left | Down |  Up  |Right |Adjust|
+ * `----------------------------------'              `----------------------------------'
+ */
+#define BOTTOM_ROW \
+  TD_ADJ ,KC_HOME,KC_END,KC_PGUP,KC_PGDN,            KC_LEFT,KC_DOWN,KC_UP,KC_RGHT,TD_ADJ
+
+/*
+ *                             ,-------------..-------------.
+ *                             | Lower| Menu || Gui  | Raise|
+ *                      ,------+------+------||------*------+------.
+ *                      |      |      | Hyper|| Alt  |      |      |
+ *                      |BkSpc | Del  |------||------| Ent  | Spc  |
+ *                      |      |      | Super|| Ctrl |      |      |
+ *                      `--------------------'`--------------------'
+ */
+#define CLUSTER_ROW \
+                          LOWER  , KC_APP ,      TD_GUI , RAISE  , \
+                                   KC_HYPR,      TD_ALT , \
+                KC_BSPC , KC_DEL , KC_SUPR,      TD_CTL , KC_ENT , KC_SPC
+
+/*
+ * ,-----------------------------------------..-----------------------------------------.
+ * |      |  F7  |  F8  |  F9  |  F10 |  F11 ||  F12 | PgUp | PgDn | Home | End  |  ⏹   |
+ * |------+------+------+------+------+------'`------+------+------+------+------+------|
+ * |      |      |      |      |      |              |      | Mute | Vol- | Vol+ |  ⏯   |
+ * `----------------------------------'              `----------------------------------'
+ */
+#define BOTTOM_RAISE_LOWER_ROWS \
+  _______, KC_F7  , KC_F8  , KC_F9  , KC_F10 , KC_F11 , KC_F12 , KC_PGUP, KC_PGDN, KC_HOME, KC_END , KC_MSTP, \
+  _______, _______, _______, _______, _______,                   _______, KC_MUTE, KC_VOLD, KC_VOLU, KC_MPLY
+
+/*
+ * ,----------------------------------.       .----------------------------------.
+ * |Adjust| Ctrl | Alt  | GUI  | XXX  |       |   0  |  0   |   .  | ENT  | XXX  |
+ * `----------------------------------'       '----------------------------------'
+ */
+#define BOTTOM_NUMBER_ROWS \
+  TD_ADJ , TD_CTL , TD_ALT , TD_GUI , XXXXXXX,                   KC_P0  , KC_P0  , KC_PDOT, KC_PENT, XXXXXXX, \
+  CLUSTER_ROW
+
+/*
+ * ,----------------------------------.       .----------------------------------.
+ * |Adjust| Ctrl | Alt  | GUI  | XXX  |       | XXX  | XXX  |  XXX | XXX  | XXX  |
+ * `----------------------------------'       '----------------------------------'
+ */
+#define BOTTOM_MOUSE_ROWS \
+  TD_ADJ , TD_CTL , TD_ALT , TD_GUI , XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
+  CLUSTER_ROW
+
+#elif USE_MIT_LAYOUT
 #define BOTTOM_ROW BOTTOM_MIT_ROW
 
 /*
@@ -129,6 +182,25 @@ qk_tap_dance_action_t tap_dance_actions[] = {
   _______, _______, _______, _______, _______, KC_BSPC, _______, _______, KC_MUTE, KC_VOLD, KC_VOLU, KC_MPLY
 #endif
 
+#if !defined(USE_DACTYL_LAYOUT)
+
+/*
+ * ,-----------------------------------------..-----------------------------------------.
+ * |Adjust| Ctrl | Alt  | GUI  | XXX  |Space ||Space |   0  |  0   |   .  | ENT  | XXX  |
+ * `-----------------------------------------''-----------------------------------------'
+ */
+#define BOTTOM_NUMBER_ROWS \
+  TD_ADJ , TD_CTL , TD_ALT , TD_GUI , XXXXXXX, KC_SPC , KC_SPC , KC_P0  , KC_P0  , KC_PDOT, KC_PENT, XXXXXXX
+
+/*
+ * ,-----------------------------------------..-----------------------------------------.
+ * |Adjust| Ctrl | Alt  | GUI  | XXX  |Space || XXX  | XXX  | XXX  |  XXX | XXX  | XXX  |
+ * `-----------------------------------------''-----------------------------------------'
+ */
+#define BOTTOM_MOUSE_ROWS \
+  TD_ADJ , TD_CTL , TD_ALT , TD_GUI , XXXXXXX, KC_SPC , XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
+
+#endif
 
 /*
  * ┌──────┬──────────────────────────────────┐┌──────────────────────────────────┬──────┐
@@ -252,7 +324,7 @@ qk_tap_dance_action_t tap_dance_actions[] = {
   KC_TAB , XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_NLCK, KC_P7  , KC_P8  , KC_P9  , KC_PMNS, KC_BSPC, \
   KC_ESC , XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_PAST, KC_P4  , KC_P5  , KC_P6  , KC_PPLS, KC_BSPC, \
   KC_LSFT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_PSLS, KC_P1  , KC_P2  , KC_P3  , KC_PENT, XXXXXXX, \
-  TD_ADJ , TD_CTL , TD_ALT , TD_GUI , XXXXXXX, KC_SPC , KC_SPC , KC_P0  , KC_P0  , KC_PDOT, KC_PENT, XXXXXXX
+  BOTTOM_NUMBER_ROWS
 
 /* Mouse movement
  * ┌──────┬──────┬──────┬──────┬──────┬──────┐┌──────┬──────┬──────┬──────┬──────┬──────┐
@@ -269,7 +341,7 @@ qk_tap_dance_action_t tap_dance_actions[] = {
   KC_TAB , MS_BTN1, MS_BTN3, MS_BTN2, MS_BTN4, MS_BTN5, MS_ACL0, MS_BTN1, MS_BTN3, MS_BTN2, MS_BTN4, MS_BTN5, \
   KC_ESC , MW_LEFT, MW_DOWN, MW_UP  , MW_RGHT, XXXXXXX, MS_ACL1, MS_LEFT, MS_DOWN, MS_UP  , MS_RGHT, XXXXXXX, \
   KC_LSFT, MS_ACL0, MS_ACL1, MS_ACL2, XXXXXXX, XXXXXXX, MS_ACL2, MW_LEFT, MW_DOWN, MW_UP  , MW_RGHT, XXXXXXX, \
-  TD_ADJ , TD_CTL , TD_ALT , TD_GUI , XXXXXXX, KC_SPC , XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
+  BOTTOM_MOUSE_ROWS
 
 /* Lower
  * ┌──────┬──────┬──────┬──────┬──────┬──────┐┌──────┬──────┬──────┬──────┬──────┬──────┐

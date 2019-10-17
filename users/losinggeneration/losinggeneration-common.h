@@ -2,7 +2,8 @@
 #define LOSINGGENERATION_COMMON_H
 
 /* Custom keys & combinations to be shorter for keymaps */
-#define KC_LCA LCA(KC_NO)
+#define KC_SUPR LCA(KC_NO)
+#define KC_HYPR HYPR(KC_NO)
 
 #define OSM_LSFT OSM(MOD_LSFT)
 #define TD_CTL TD(TD_CTL_CTLALT)
