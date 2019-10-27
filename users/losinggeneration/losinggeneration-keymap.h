@@ -103,21 +103,21 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 #ifdef USE_DACTYL_LAYOUT
 
 /*
- * ,----------------------------------.              .----------------------------------.
- * |Adjust| Home | End  | PgUp | PgDn |              | Left | Down |  Up  |Right |Adjust|
- * `----------------------------------'              `----------------------------------'
+ * ┌──────┬──────┬──────┬──────┬──────┐              ┌──────┬──────┬──────┬──────┬──────┐
+ * │Adjust│ Home │ End  │ PgUp │ PgDn │              │ Left │ Down │  Up  │Right │ XXX  │
+ * └──────┴──────┴──────┴──────┴──────┘              └──────┴──────┴──────┴──────┴──────┘
  */
 #define BOTTOM_ROW \
-  TD_ADJ ,KC_HOME,KC_END,KC_PGUP,KC_PGDN,            KC_LEFT,KC_DOWN,KC_UP,KC_RGHT,TD_ADJ
+  TD_ADJ ,KC_HOME,KC_END,KC_PGUP,KC_PGDN,            KC_LEFT,KC_DOWN,KC_UP,KC_RGHT,XXXXXXX
 
 /*
- *                             ,-------------..-------------.
- *                             | Lower| Menu || Gui  | Raise|
- *                      ,------+------+------||------*------+------.
- *                      |      |      | Hyper|| Alt  |      |      |
- *                      |BkSpc | Del  |------||------| Ent  | Spc  |
- *                      |      |      | Super|| Ctrl |      |      |
- *                      `--------------------'`--------------------'
+ *                             ┌──────┬──────┐┌──────┬──────┐
+ *                             │ Lower│ Menu ││ Gui  │ Raise│
+ *                      ┌──────┼──────┼──────┤├──────┼──────┼──────┐
+ *                      │      │      │ Hyper││ Alt  │      │      │
+ *                      │BkSpc │ Del  ├──────┤├──────┤ Ent  │ Spc  │
+ *                      │      │      │ Super││ Ctrl │      │      │
+ *                      └──────┴──────┴──────┘└──────┴──────┴──────┘
  */
 #define CLUSTER_ROW \
                           LOWER  , KC_APP ,      TD_GUI , RAISE  , \
@@ -125,32 +125,32 @@ qk_tap_dance_action_t tap_dance_actions[] = {
                 KC_BSPC , KC_DEL , KC_SUPR,      TD_CTL , KC_ENT , KC_SPC
 
 /*
- * ,-----------------------------------------..-----------------------------------------.
- * |      |  F7  |  F8  |  F9  |  F10 |  F11 ||  F12 | PgUp | PgDn | Home | End  |  ⏹   |
- * |------+------+------+------+------+------'`------+------+------+------+------+------|
- * |      |      |      |      |      |              |      | Mute | Vol- | Vol+ |  ⏯   |
- * `----------------------------------'              `----------------------------------'
+ * ┌──────┬──────┬──────┬──────┬──────┬──────┐┌──────┬──────┬──────┬──────┬──────┬──────┐
+ * │      │  F7  │  F8  │  F9  │  F10 │  F11 ││  F12 │ PgUp │ PgDn │ Home │ End  │  ⏹   │
+ * ├──────┼──────┼──────┼──────┼──────┼──────┘└──────┼──────┼──────┼──────┼──────┼──────┤
+ * │      │      │      │      │      │              │      │ Mute │ Vol- │ Vol+ │  ⏯   │
+ * └──────┴──────┴──────┴──────┴──────┘              └──────┴──────┴──────┴──────┴──────┘
  */
 #define BOTTOM_RAISE_LOWER_ROWS \
   _______, KC_F7  , KC_F8  , KC_F9  , KC_F10 , KC_F11 , KC_F12 , KC_PGUP, KC_PGDN, KC_HOME, KC_END , KC_MSTP, \
   _______, _______, _______, _______, _______,                   _______, KC_MUTE, KC_VOLD, KC_VOLU, KC_MPLY
 
 /*
- * ,----------------------------------.       .----------------------------------.
- * |Adjust| Ctrl | Alt  | GUI  | XXX  |       |   0  |  0   |   .  | ENT  | XXX  |
- * `----------------------------------'       '----------------------------------'
+ * ┌──────┬──────┬──────┬──────┬──────┐              ┌──────┬──────┬──────┬──────┬──────┐
+ * │Adjust│ Ctrl │ Alt  │ GUI  │ XXX  │              │   0  │  0   │   .  │ ENT  │ XXX  │
+ * └──────┴──────┴──────┴──────┴──────┘              └──────┴──────┴──────┴──────┴──────┘
  */
 #define BOTTOM_NUMBER_ROWS \
-  TD_ADJ , TD_CTL , TD_ALT , TD_GUI , XXXXXXX,                   KC_P0  , KC_P0  , KC_PDOT, KC_PENT, XXXXXXX, \
+  TD_ADJ , TD_CTL , TD_ALT , TD_GUI , XXXXXXX,        KC_P0  , KC_P0  , KC_PDOT, KC_PENT, XXXXXXX, \
   CLUSTER_ROW
 
 /*
- * ,----------------------------------.       .----------------------------------.
- * |Adjust| Ctrl | Alt  | GUI  | XXX  |       | XXX  | XXX  |  XXX | XXX  | XXX  |
- * `----------------------------------'       '----------------------------------'
+ * ┌──────┬──────┬──────┬──────┬──────┐              ┌──────┬──────┬──────┬──────┬──────┐
+ * │Adjust│ Ctrl │ Alt  │ GUI  │ XXX  │              │ XXX  │ XXX  │  XXX │ XXX  │ XXX  │
+ * └──────┴──────┴──────┴──────┴──────┘              └──────┴──────┴──────┴──────┴──────┘
  */
 #define BOTTOM_MOUSE_ROWS \
-  TD_ADJ , TD_CTL , TD_ALT , TD_GUI , XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
+  TD_ADJ , TD_CTL , TD_ALT , TD_GUI , XXXXXXX,        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
   CLUSTER_ROW
 
 #elif USE_MIT_LAYOUT
@@ -185,17 +185,17 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 #if !defined(USE_DACTYL_LAYOUT)
 
 /*
- * ,-----------------------------------------..-----------------------------------------.
- * |Adjust| Ctrl | Alt  | GUI  | XXX  |Space ||Space |   0  |  0   |   .  | ENT  | XXX  |
- * `-----------------------------------------''-----------------------------------------'
+ * ┌──────┬──────┬──────┬──────┬──────┬──────┐┌──────┬──────┬──────┬──────┬──────┬──────┐
+ * │Adjust│ Ctrl │ Alt  │ GUI  │ XXX  │Space ││Space │   0  │  0   │   .  │ ENT  │ XXX  │
+ * └──────┴──────┴──────┴──────┴──────┴──────┘└──────┴──────┴──────┴──────┴──────┴──────┘
  */
 #define BOTTOM_NUMBER_ROWS \
   TD_ADJ , TD_CTL , TD_ALT , TD_GUI , XXXXXXX, KC_SPC , KC_SPC , KC_P0  , KC_P0  , KC_PDOT, KC_PENT, XXXXXXX
 
 /*
- * ,-----------------------------------------..-----------------------------------------.
- * |Adjust| Ctrl | Alt  | GUI  | XXX  |Space || XXX  | XXX  | XXX  |  XXX | XXX  | XXX  |
- * `-----------------------------------------''-----------------------------------------'
+ * ┌──────┬──────┬──────┬──────┬──────┬──────┐┌──────┬──────┬──────┬──────┬──────┬──────┐
+ * │Adjust│ Ctrl │ Alt  │ GUI  │ XXX  │Space ││ XXX  │ XXX  │ XXX  │  XXX │ XXX  │ XXX  │
+ * └──────┴──────┴──────┴──────┴──────┴──────┘└──────┴──────┴──────┴──────┴──────┴──────┘
  */
 #define BOTTOM_MOUSE_ROWS \
   TD_ADJ , TD_CTL , TD_ALT , TD_GUI , XXXXXXX, KC_SPC , XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
