@@ -153,7 +153,7 @@ qk_tap_dance_action_t tap_dance_actions[] = {
   TD_ADJ , TD_CTL , TD_ALT , TD_GUI , XXXXXXX,        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
   CLUSTER_ROW
 
-#elif USE_MIT_LAYOUT
+#elif defined(USE_MIT_LAYOUT)
 #define BOTTOM_ROW BOTTOM_MIT_ROW
 
 /*
