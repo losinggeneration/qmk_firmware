@@ -9,6 +9,8 @@
 /* Tap dance keycodes */
 enum tap_dance_keycodes {
   TD_CTL_CTLALT = 0,
+  TD_SUPR_LCTL,
+  TD_HYPR_LALT,
   TD_LGUI_RGUI,
   TD_LALT_RALT,
   TD_ADJUST,
@@ -30,6 +32,52 @@ void dance_ctl_ctlalt_reset(qk_tap_dance_state_t *state, void *user_data) {
   unregister_code(KC_LCTL);
   if(state->count > 1) {
     unregister_code(KC_LALT);
+  }
+}
+
+/*
+  Used to indicate a SUPR should be pressed on one press, or CTRL on
+  a double tap
+*/
+void dance_supr_ctl_each(qk_tap_dance_state_t *state, void *user_data) {
+  register_code(KC_LCTL);
+  register_code(KC_LALT);
+  if(state->count > 1) {
+    unregister_code(KC_LALT);
+  }
+}
+
+/* Used to release SUPR or the double tapped variant CTRL */
+void dance_supr_ctl_reset(qk_tap_dance_state_t *state, void *user_data) {
+  unregister_code(KC_LCTL);
+  if(state->count == 1) {
+    unregister_code(KC_LALT);
+  }
+}
+
+/*
+  Used to indicate a HYPR should be pressed on one press, or ALT on
+  a double tap
+*/
+void dance_hypr_alt_each(qk_tap_dance_state_t *state, void *user_data) {
+  register_code(KC_LALT);
+  register_code(KC_LCTL);
+  register_code(KC_LGUI);
+  register_code(KC_LSFT);
+  if(state->count > 1) {
+    unregister_code(KC_LCTL);
+    unregister_code(KC_LGUI);
+    unregister_code(KC_LSFT);
+  }
+}
+
+/* Used to release HYPR or the double tapped variant ALT */
+void dance_hypr_alt_reset(qk_tap_dance_state_t *state, void *user_data) {
+  unregister_code(KC_LALT);
+  if(state->count == 1) {
+    unregister_code(KC_LCTL);
+    unregister_code(KC_LGUI);
+    unregister_code(KC_LSFT);
   }
 }
 
@@ -79,6 +127,8 @@ void dance_adj_reset(qk_tap_dance_state_t *state, void *user_data) {
 
 qk_tap_dance_action_t tap_dance_actions[] = {
   [TD_CTL_CTLALT] = ACTION_TAP_DANCE_FN_ADVANCED(dance_ctl_ctlalt_each, NULL, dance_ctl_ctlalt_reset),
+  [TD_SUPR_LCTL]  = ACTION_TAP_DANCE_FN_ADVANCED(dance_supr_ctl_each, NULL, dance_supr_ctl_reset),
+  [TD_HYPR_LALT]  = ACTION_TAP_DANCE_FN_ADVANCED(dance_hypr_alt_each, NULL, dance_hypr_alt_reset),
   [TD_LGUI_RGUI]  = ACTION_TAP_DANCE_DOUBLE(KC_LGUI, KC_RGUI),
   [TD_LALT_RALT]  = ACTION_TAP_DANCE_DOUBLE(KC_LALT, KC_RALT),
   [TD_ADJUST]     = ACTION_TAP_DANCE_FN_ADVANCED(dance_adj_each, dance_adj_finish, dance_adj_reset),
@@ -121,8 +171,8 @@ qk_tap_dance_action_t tap_dance_actions[] = {
  */
 #define CLUSTER_ROW \
                           LOWER  , KC_APP ,      TD_GUI , RAISE  , \
-                                   KC_HYPR,      TD_ALT , \
-                KC_BSPC , KC_DEL , KC_SUPR,      TD_CTL , KC_ENT , KC_SPC
+                                   TD_HYPR,      TD_ALT , \
+                KC_BSPC , KC_DEL , TD_SUPR,      TD_CTL , KC_ENT , KC_SPC
 
 /*
  * ┌──────┬──────┬──────┬──────┬──────┬──────┐┌──────┬──────┬──────┬──────┬──────┬──────┐

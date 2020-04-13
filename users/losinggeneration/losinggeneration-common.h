@@ -7,6 +7,8 @@
 
 #define OSM_LSFT OSM(MOD_LSFT)
 #define TD_CTL TD(TD_CTL_CTLALT)
+#define TD_SUPR TD(TD_SUPR_LCTL)
+#define TD_HYPR TD(TD_HYPR_LALT)
 #define TD_GUI TD(TD_LGUI_RGUI)
 #define TD_ALT TD(TD_LALT_RALT)
 #define MT_ENT SFT_T(KC_ENT)
