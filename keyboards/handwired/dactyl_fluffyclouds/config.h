@@ -29,7 +29,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 // wiring of each half
 #define MATRIX_COL_PINS { D4, C6, D7, E6, B4, B5 }
-#define MATRIX_ROW_PINS { F6, F7, B1, B3, B2, B6 }
+#define MATRIX_ROW_PINS { F6, F7, B1, B3, B2, F5 }
 
 /* USB Device descriptor parameter */
 #define VENDOR_ID       0xFEED
@@ -62,6 +62,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * Feature disable options
  *  These options are also useful to firmware size reduction.
  */
+
+/* enable audio on B5 */
+#define B6_AUDIO
+#define NO_MUSIC_MODE
+#define AUDIO_CLICKY
 
 /* disable debug print */
 // #define NO_DEBUG
