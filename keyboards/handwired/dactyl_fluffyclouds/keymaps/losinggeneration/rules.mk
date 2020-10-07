@@ -3,6 +3,7 @@
 #   the appropriate keymap folder that will get included automatically
 #
 AUDIO_ENABLE     = yes   # Audio output on port B6
+FAUXCLICKY_ENABLE = no
 BACKLIGHT_ENABLE = no    # Enable keyboard backlight functionality
 BLUETOOTH_ENABLE = no    # Enable Bluetooth with the Adafruit EZ-Key HID
 BOOTMAGIC_ENABLE = no    # Virtual DIP switch configuration(+1000)
@@ -12,3 +13,11 @@ MIDI_ENABLE      = no    # MIDI controls
 NKRO_ENABLE      = no    # Nkey Rollover - if this doesn't work, see here: https://github.com/tmk/tmk_keyboard/wiki/FAQ#nkro-doesnt-work
 RGBLIGHT_ENABLE  = no    # Enable WS2812 RGB underlight.
 
+UCIS_ENABLE = no
+UNICODE_ENABLE = no
+UNICODEMAP_ENABLE = no
+#VARIABLE_TRACE = no
+API_SYSEX_ENABLE = no
+KEY_LOCK_ENABLE = no
+SLEEP_LED_ENABLE = no
+COMBO_ENABLE = no

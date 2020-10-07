@@ -40,4 +40,12 @@ long with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define MOUSEKEY_MAX_SPEED         30
 #define MOUSEKEY_TIME_TO_MAX       200
 
+#define NO_MUSIC_MODE
+#define AUDIO_CLICKY
+
+#define AUDIO_CLICKY_FREQ_DEFAULT 261.63f
+//#define AUDIO_CLICKY_FREQ_DEFAULT 1500.0f
+#define AUDIO_CLICKY_FREQ_RANDOMNESS 0.025f
+//#define AUDIO_CLICKY_FREQ_RANDOMNESS 0.0f
+
 #endif

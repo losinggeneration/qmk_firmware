@@ -65,14 +65,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 /* enable audio on B5 */
 #define B6_AUDIO
-#define NO_MUSIC_MODE
-#define AUDIO_CLICKY
 
 /* disable debug print */
-// #define NO_DEBUG
+//#define NO_DEBUG
 
 /* disable print */
-// #define NO_PRINT
+//#define NO_PRINT
 
 /* disable action features */
 //#define NO_ACTION_LAYER
