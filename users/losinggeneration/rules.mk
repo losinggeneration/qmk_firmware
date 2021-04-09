@@ -10,3 +10,9 @@ MOUSEKEY_ENABLE  = yes   # Mouse keys(+4700)
 TAP_DANCE_ENABLE = yes   # Enable tap dancing
 #UNICODE_ENABLE   = no    # Unicode
 
+SRC += layouts.c
+
+ifeq ($(strip $(TAP_DANCE_ENABLE)), yes)
+    SRC += tap_dances.c
+endif
+

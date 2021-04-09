@@ -1,5 +1,4 @@
-#ifndef LOSINGGENERATION_COMMON_H
-#define LOSINGGENERATION_COMMON_H
+#pragma once
 
 /* Custom keys & combinations to be shorter for keymaps */
 #define KC_LCA LCA(KC_NO)
@@ -38,12 +37,6 @@
 #define MS_ACL2 KC_MS_ACCEL2
 
 /*
- * This will expand values sent to it to send to the KEYMAP macro so defines
- * can be used by KEYMAP
- */
-#define CATMAP(...) LAYOUT(__VA_ARGS__)
-
-/*
   Each layer gets a name for readability, which is then used in the keymap matrix below.
   The underscores don't mean anything - you can have a layer called STUFF or any other name.
   Layer names don't all need to be of the same length, obviously, and you can also skip them
@@ -61,13 +54,3 @@
 #define _RAISE  15
 #define _ADJUST 16
 
-enum custom_keycodes {
-  QWERTY = SAFE_RANGE,
-  COLEMAK,
-  WORKMAN,
-  DVORAK,
-  LOWER,
-  RAISE,
-};
-
-#endif
