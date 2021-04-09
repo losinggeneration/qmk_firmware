@@ -1,88 +1,10 @@
-#ifndef LOSINGGENERATION_KEYMAP_H
-#define LOSINGGENERATION_KEYMAP_H
+#pragma once
+
+#include "losinggeneration.h"
 
 #include "action_layer.h"
 #include "eeconfig.h"
 #include "mousekey.h"
-#include "losinggeneration-common.h"
-
-/* Tap dance keycodes */
-enum tap_dance_keycodes {
-  TD_CTL_CTLALT = 0,
-  TD_LGUI_RGUI,
-  TD_LALT_RALT,
-  TD_ADJUST,
-};
-
-/*
-  Used to indicate a CTRL should be pressed on one press, or CTRL+ALT on
-  a double tap
-*/
-void dance_ctl_ctlalt_each(qk_tap_dance_state_t *state, void *user_data) {
-  register_code(KC_LCTL);
-  if(state->count > 1) {
-    register_code(KC_LALT);
-  }
-}
-
-/* Used to release CTRL or the double tapped variant CTRL+ALT */
-void dance_ctl_ctlalt_reset(qk_tap_dance_state_t *state, void *user_data) {
-  unregister_code(KC_LCTL);
-  if(state->count > 1) {
-    unregister_code(KC_LALT);
-  }
-}
-
-/*
-  Set ADJUST layer on the first press and off after that.
-  Each is used to make sure ADJUST activates as soon as it's pressed the first
-  time.
-*/
-void dance_adj_each(qk_tap_dance_state_t *state, void *user_data) {
-  if(state->count == 1) {
-    layer_on(_ADJUST);
-  } else {
-    layer_off(_ADJUST);
-  }
-}
-
-/* Set NUMPAD layer on second tap and MOUSE layer on 3rd */
-void dance_adj_finish(qk_tap_dance_state_t *state, void *user_data) {
-  switch(state->count) {
-    case 1: break;
-    case 2:
-      layer_on(_NUMPAD);
-      break;
-    case 3:
-      layer_on(_MOUSE);
-      break;
-    default:
-      reset_tap_dance(state);
-      break;
-  }
-}
-
-/* Turn off any layer that may have been tapped on */
-void dance_adj_reset(qk_tap_dance_state_t *state, void *user_data) {
-  switch(state->count) {
-    case 1:
-      layer_off(_ADJUST);
-      break;
-    case 2:
-      layer_off(_NUMPAD);
-      break;
-    case 3:
-      layer_off(_MOUSE);
-      break;
-  }
-}
-
-qk_tap_dance_action_t tap_dance_actions[] = {
-  [TD_CTL_CTLALT] = ACTION_TAP_DANCE_FN_ADVANCED(dance_ctl_ctlalt_each, NULL, dance_ctl_ctlalt_reset),
-  [TD_LGUI_RGUI]  = ACTION_TAP_DANCE_DOUBLE(KC_LGUI, KC_RGUI),
-  [TD_LALT_RALT]  = ACTION_TAP_DANCE_DOUBLE(KC_LALT, KC_RALT),
-  [TD_ADJUST]     = ACTION_TAP_DANCE_FN_ADVANCED(dance_adj_each, dance_adj_finish, dance_adj_reset),
-};
 
 /*
  * ┌──────┬──────┬──────┬──────┬──────┬──────┐┌──────┬──────┬──────┬──────┬──────┬──────┐
@@ -316,95 +238,13 @@ float tone_workman;
 #define PLAY_SONG(tone)
 #endif
 
-void persistent_default_layer_set(uint16_t default_layer) {
-  layer_state_set(default_layer);
-  eeconfig_update_default_layer(default_layer);
-  default_layer_set(default_layer);
-}
+enum custom_keycodes {
+  QWERTY = SAFE_RANGE,
+  COLEMAK,
+  WORKMAN,
+  DVORAK,
+  LOWER,
+  RAISE,
+};
 
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-  switch (keycode) {
-    case KC_ACL0:
-      if (record->event.pressed) {
-        mk_interval = 12;
-        mk_max_speed = 4;
-      } else {
-        mk_interval = MOUSEKEY_INTERVAL;
-        mk_max_speed = MOUSEKEY_MAX_SPEED;
-      }
-      return false;
-      break;
-    case KC_ACL1:
-      if (record->event.pressed) {
-        mk_interval = 10;
-        mk_max_speed = 72;
-      } else {
-        mk_interval = MOUSEKEY_INTERVAL;
-        mk_max_speed = MOUSEKEY_MAX_SPEED;
-      }
-      return false;
-      break;
-    case KC_ACL2:
-      if (record->event.pressed) {
-        mk_interval = 5;
-        mk_max_speed = 60;
-      } else {
-        mk_interval = MOUSEKEY_INTERVAL;
-        mk_max_speed = MOUSEKEY_MAX_SPEED;
-      }
-      return false;
-      break;
-    case QWERTY:
-      if (record->event.pressed) {
-        PLAY_SONG(tone_qwerty);
-        persistent_default_layer_set(1UL<<_QWERTY);
-      }
-      return false;
-      break;
-    case COLEMAK:
-      if (record->event.pressed) {
-        PLAY_SONG(tone_colemak);
-        persistent_default_layer_set(1UL<<_COLEMAK);
-      }
-      return false;
-      break;
-    case WORKMAN:
-      if (record->event.pressed) {
-        PLAY_SONG(tone_workman);
-        persistent_default_layer_set(1UL<<_WORKMAN);
-      }
-      return false;
-      break;
-    case DVORAK:
-      if (record->event.pressed) {
-        PLAY_SONG(tone_dvorak);
-        persistent_default_layer_set(1UL<<_DVORAK);
-      }
-      return false;
-      break;
-    case LOWER:
-      if (record->event.pressed) {
-        layer_on(_LOWER);
-        update_tri_layer(_LOWER, _RAISE, _ADJUST);
-      } else {
-        layer_off(_LOWER);
-        update_tri_layer(_LOWER, _RAISE, _ADJUST);
-      }
-      return false;
-      break;
-    case RAISE:
-      if (record->event.pressed) {
-        layer_on(_RAISE);
-        update_tri_layer(_LOWER, _RAISE, _ADJUST);
-      } else {
-        layer_off(_RAISE);
-        update_tri_layer(_LOWER, _RAISE, _ADJUST);
-      }
-      return false;
-      break;
-  }
 
-  return true;
-}
-
-#endif
