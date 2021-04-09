@@ -85,7 +85,7 @@
  * │Adjust│ Ctrl │ Alt  │ GUI  │Lower │ Del  ││Space │Raise │ Left │ Down │  Up  │Right │
  * └──────┴──────┴──────┴──────┴──────┴──────┘└──────┴──────┴──────┴──────┴──────┴──────┘
  */
-#define QWERTY_LAYER \
+#define QWERTY_LAYER_4x12 \
   STD_TAB_ROW( KC_Q   , KC_W   , KC_E   , KC_R   , KC_T   , KC_Y   , KC_U   , KC_I   , KC_O   , KC_P   ),           \
   STD_ESC_ROW( KC_A   , KC_S   , KC_D   , KC_F   , KC_G   , KC_H   , KC_J   , KC_K   , KC_L   , KC_SCLN , KC_QUOT), \
   STD_LSFT_ROW(KC_Z   , KC_X   , KC_C   , KC_V   , KC_B   , KC_N   , KC_M   , KC_COMM, KC_DOT , KC_SLSH),           \
@@ -102,7 +102,7 @@
  * │Adjust│ Ctrl │ Alt  │ GUI  │Lower │ Del  ││Space │Raise │ Left │ Down │  Up  │Right │
  * └──────┴──────┴──────┴──────┴──────┴──────┘└──────┴──────┴──────┴──────┴──────┴──────┘
  */
-#define COLEMAK_LAYER \
+#define COLEMAK_LAYER_4x12 \
   STD_TAB_ROW( KC_Q   , KC_W   , KC_F   , KC_P   , KC_B   , KC_J   , KC_L   , KC_U   , KC_Y   , KC_SCLN),           \
   STD_ESC_ROW( KC_A   , KC_R   , KC_S   , KC_T   , KC_G   , KC_K   , KC_N   , KC_E   , KC_I   , KC_O    , KC_QUOT), \
   STD_LSFT_ROW(KC_Z   , KC_X   , KC_C   , KC_D   , KC_V   , KC_M   , KC_H   , KC_COMM, KC_DOT , KC_SLSH),           \
@@ -119,7 +119,7 @@
  * │Adjust│ Ctrl │ Alt  │ GUI  │Lower │ Del  ││Space │Raise │ Left │ Down │  Up  │Right │
  * └──────┴──────┴──────┴──────┴──────┴──────┘└──────┴──────┴──────┴──────┴──────┴──────┘
  */
-#define WORKMAN_LAYER \
+#define WORKMAN_LAYER_4x12 \
   STD_TAB_ROW( KC_Q   , KC_D   , KC_R   , KC_W   , KC_B   , KC_J   , KC_F   , KC_U   , KC_P   , KC_SCLN),           \
   STD_ESC_ROW( KC_A   , KC_S   , KC_H   , KC_T   , KC_G   , KC_Y   , KC_N   , KC_E   , KC_O   , KC_I    , KC_QUOT), \
   STD_LSFT_ROW(KC_Z   , KC_X   , KC_M   , KC_C   , KC_V   , KC_K   , KC_L   , KC_COMM, KC_DOT , KC_SLSH),           \
@@ -136,7 +136,7 @@
  * │Adjust│ Ctrl │ Alt  │ GUI  │Lower │ Del  ││Space │Raise │ Left │ Down │  Up  │Right │
  * └──────┴──────┴──────┴──────┴──────┴──────┘└──────┴──────┴──────┴──────┴──────┴──────┘
  */
-#define DVORAK_LAYER \
+#define DVORAK_LAYER_4x12 \
   STD_TAB_ROW( KC_QUOT, KC_COMM, KC_DOT , KC_P   , KC_Y   , KC_F   , KC_G   , KC_C   , KC_R   , KC_L),           \
   STD_ESC_ROW( KC_A   , KC_O   , KC_E   , KC_U   , KC_I   , KC_D   , KC_H   , KC_T   , KC_N   , KC_S , KC_SLSH), \
   STD_LSFT_ROW(KC_SCLN, KC_Q   , KC_J   , KC_K   , KC_X   , KC_B   , KC_M   , KC_W   , KC_V   , KC_Z),           \
@@ -153,7 +153,7 @@
  * │Adjust│ Ctrl │ Alt  │ GUI  │Lower │Space ││Space │Raise │ Left │ Down │  Up  │Right │
  * └──────┴──────┴──────┴──────┴──────┴──────┘└──────┴──────┴──────┴──────┴──────┴──────┘
  */
-#define GAME_LAYER \
+#define GAME_LAYER_4x12 \
   KC_TAB , KC_Q   , KC_W   , KC_E   , KC_R   , KC_T   , KC_Y   , KC_U   , KC_I   , KC_O   , KC_P   , KC_BSPC, \
   KC_ESC , KC_A   , KC_S   , KC_D   , KC_F   , KC_G   , KC_H   , KC_J   , KC_K   , KC_L   , KC_SCLN, KC_QUOT, \
   KC_LSFT, KC_Z   , KC_X   , KC_C   , KC_V   , KC_B   , KC_N   , KC_M   , KC_COMM, KC_DOT , KC_SLSH, KC_ENT , \
@@ -170,7 +170,7 @@
  * │Adjust│ Ctrl │ Alt  │ GUI  │ XXX  │Space ││Space │   0  │  0   │   .  │ ENT  │ XXX  │
  * └──────┴──────┴──────┴──────┴──────┴──────┘└──────┴──────┴──────┴──────┴──────┴──────┘
  */
-#define NUMPAD_LAYER \
+#define NUMPAD_LAYER_4x12 \
   KC_TAB , XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_NLCK, KC_P7  , KC_P8  , KC_P9  , KC_PMNS, KC_BSPC, \
   KC_ESC , XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_PAST, KC_P4  , KC_P5  , KC_P6  , KC_PPLS, KC_BSPC, \
   KC_LSFT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_PSLS, KC_P1  , KC_P2  , KC_P3  , KC_PENT, XXXXXXX, \
@@ -187,7 +187,7 @@
  * │Adjust│ Ctrl │ Alt  │ GUI  │ XXX  │Space ││ XXX  │ XXX  │ XXX  │  XXX │ XXX  │ XXX  │
  * └──────┴──────┴──────┴──────┴──────┴──────┘└──────┴──────┴──────┴──────┴──────┴──────┘
  */
-#define MOUSE_LAYER \
+#define MOUSE_LAYER_4x12 \
   KC_TAB , MS_BTN1, MS_BTN3, MS_BTN2, MS_BTN4, MS_BTN5, MS_ACL0, MS_BTN1, MS_BTN3, MS_BTN2, MS_BTN4, MS_BTN5, \
   KC_ESC , MW_LEFT, MW_DOWN, MW_UP  , MW_RGHT, XXXXXXX, MS_ACL1, MS_LEFT, MS_DOWN, MS_UP  , MS_RGHT, XXXXXXX, \
   KC_LSFT, MS_ACL0, MS_ACL1, MS_ACL2, XXXXXXX, XXXXXXX, MS_ACL2, MW_LEFT, MW_DOWN, MW_UP  , MW_RGHT, XXXXXXX, \
@@ -204,7 +204,7 @@
  * │      │      │      │      │      │      ││      │      │ Mute │ Vol- │ Vol+ │  ⏯   │
  * └──────┴──────┴──────┴──────┴──────┴──────┘└──────┴──────┴──────┴──────┴──────┴──────┘
  */
-#define LOWER_LAYER \
+#define LOWER_LAYER_4x12 \
   KC_TILD, KC_EXLM, KC_AT  , KC_HASH, KC_DLR , KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_BSPC, \
   KC_DEL , KC_MINS, KC_EQL , KC_LBRC, KC_RBRC, KC_BSLS, KC_PIPE, KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR, KC_TILD, \
   BOTTOM_RAISE_LOWER_ROWS
@@ -220,7 +220,7 @@
  * │      │      │      │      │      │      ││      │      │ Mute │ Vol- │ Vol+ │  ⏯   │
  * └──────┴──────┴──────┴──────┴──────┴──────┘└──────┴──────┴──────┴──────┴──────┴──────┘
  */
-#define RAISE_LAYER \
+#define RAISE_LAYER_4x12 \
   KC_GRV , KC_1   , KC_2   , KC_3   , KC_4   , KC_5   , KC_6   , KC_7   , KC_8   , KC_9   , KC_0   , KC_BSPC, \
   KC_DEL , KC_EXLM, KC_AT  , KC_HASH, KC_DLR , KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_GRV , \
   BOTTOM_RAISE_LOWER_ROWS
