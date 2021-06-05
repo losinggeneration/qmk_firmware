@@ -111,6 +111,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_LALT, KC_LGUI, KC_GRV , KC_MINS, KC_PLUS, KC_SPC ,KC_LBRC, KC_RBRC, KC_INS , KC_DEL , KC_HOME, KC_END , KC_PGUP, KC_PGDN, DVORAK   \
   ),
 
+  [_MOUSE] = LAYOUT_ortho_5x15_expand(
+  ortho_5x12_to_5x15_expand( \
+	XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
+	MOUSE_LAYER_4x12, \
+    _______, _______, _______, \
+    _______, _______, _______, \
+    _______, _______, _______, \
+    _______, _______, _______, \
+    _______, _______, _______  \
+  )),
+
 /* Lower
  * ┌──────┬──────┬──────┬──────┬──────┬──────┬──────┬──────┬──────┬──────┬──────┬──────┬──────┬──────┬──────┐
  * │      │      │      │      │      │      │      │      │      │      │      │      │      │      │      │
@@ -174,7 +185,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
   [_ADJUST] = LAYOUT_ortho_5x15_expand( \
      RESET , DEBUG  , _______, _______, _______, _______, _______, _______, BL_ON  , _______, _______, _______, _______, _______, _______, \
-    _______, KC_F1  ,  KC_F2 , KC_F3  , KC_F4  , _______, RGB_HUD, RGB_HUI, BL_TOGG, _______, TO_GAME, _______, _______, _______, KC_SLEP, \
+    _______, KC_F1  ,  KC_F2 , KC_F3  , KC_F4  , _______, RGB_HUD, RGB_HUI, BL_TOGG, _______, TO_GAME, TO_MS  , _______, _______, KC_SLEP, \
     _______, KC_F5  ,  KC_F6 , KC_F7  , KC_F8  , _______, RGB_SAD, RGB_SAI, BL_DEC , _______, QWERTY , _______, _______, DVORAK , _______, \
     KC_CAPS, KC_F9  ,  KC_F10, KC_F11 , KC_F12 , _______, RGB_VAD, RGB_VAI, BL_INC , _______, _______, _______, _______, KC_UP  , _______, \
     _______, _______, _______, _______, _______, _______, RGB_RMOD,RGB_MOD, BL_BRTG, _______, _______, XXXXXXX, KC_LEFT, KC_DOWN, KC_RGHT  \
