@@ -1,12 +1,12 @@
 #include "losinggeneration.h"
 
-void persistent_default_layer_set(uint16_t default_layer) {
+__attribute__ ((weak)) void persistent_default_layer_set(uint16_t default_layer) {
   layer_state_set(default_layer);
   eeconfig_update_default_layer(default_layer);
   default_layer_set(default_layer);
 }
 
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+__attribute__ ((weak)) bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
     case KC_ACL0:
       if (record->event.pressed) {
