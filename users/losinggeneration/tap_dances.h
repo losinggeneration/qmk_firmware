@@ -1,4 +1,5 @@
 #pragma once
+#if !defined(LG_DISABLE_TAP_DANCES)
 #include "losinggeneration.h"
 
 /* Tap dance keycodes */
@@ -9,3 +10,4 @@ enum tap_dance_keycodes {
   TD_ADJUST,
 };
 
+#endif

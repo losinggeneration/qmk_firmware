@@ -1,3 +1,4 @@
+#if !defined(LG_DISABLE_TAP_DANCES)
 #include "tap_dances.h"
 
 /*
@@ -70,3 +71,4 @@ qk_tap_dance_action_t tap_dance_actions[] = {
   [TD_ADJUST]     = ACTION_TAP_DANCE_FN_ADVANCED(dance_adj_each, dance_adj_finish, dance_adj_reset),
 };
 
+#endif
