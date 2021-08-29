@@ -77,8 +77,22 @@
   K20, K21, K22, K23, K24, K25, K26, K27, K28, K29, K2A, K2B, \
   K30, K31, K32, K33, K34, K35, K36, K37, K38, K39, K3A, K3B  \
 
+#define ortho_5x12(                                           \
+  K00, K01, K02, K03, K04, K05, K06, K07, K08, K09, K0A, K0B, \
+  K10, K11, K12, K13, K14, K15, K16, K17, K18, K19, K1A, K1B, \
+  K20, K21, K22, K23, K24, K25, K26, K27, K28, K29, K2A, K2B, \
+  K30, K31, K32, K33, K34, K35, K36, K37, K38, K39, K3A, K3B, \
+  K40, K41, K42, K43, K44, K45, K46, K47, K48, K49, K4A, K4B  \
+)                                                             \
+  K00, K01, K02, K03, K04, K05, K06, K07, K08, K09, K0A, K0B, \
+  K10, K11, K12, K13, K14, K15, K16, K17, K18, K19, K1A, K1B, \
+  K20, K21, K22, K23, K24, K25, K26, K27, K28, K29, K2A, K2B, \
+  K30, K31, K32, K33, K34, K35, K36, K37, K38, K39, K3A, K3B, \
+  K40, K41, K42, K43, K44, K45, K46, K47, K48, K49, K4A, K4B  \
+
 /* This will expand the macro when used in another macro that uses __VA_ARGS__ */
 #define ortho_4x12_expand(...) ortho_4x12(__VA_ARGS__)
+#define ortho_5x12_expand(...) ortho_5x12(__VA_ARGS__)
 
 /*
  * ┌──────┬──────┬──────┬──────┬──────┬──────┐
@@ -180,14 +194,22 @@
     BOTTOM_RAISE_LOWER_ROWS_L, BOTTOM_RAISE_LOWER_ROWS_R \
 )
 
-/*
+/* R1
+ * ┌──────┬──────┬──────┬──────┬──────┬──────┐┌──────┬──────┬──────┬──────┬──────┬──────┐
+ * │   `  │   1  │   2  │   3  │   4  │   5  ││   6  │   7  │   8  │   9  │   9  │ Del  │
+ * └──────┴──────┴──────┴──────┴──────┴──────┘└──────┴──────┴──────┴──────┴──────┴──────┘
+ */
+#define NUMBER_ROW \
+  KC_GRV  ,KC_1   , KC_2   , KC_3   , KC_4   , KC_5   , KC_6   , KC_7   , KC_8   , KC_9   , KC_0   , KC_DEL
+
+/* R2
  * ┌──────┬──────────────────────────────────┐┌──────────────────────────────────┬──────┐
  * │ Tab  │                                  ││                                  │ Bksp │
  * └──────┴──────────────────────────────────┘└──────────────────────────────────┴──────┘
  */
 #define STD_TAB KC_TAB, KC_BSPC
 
-/*
+/* R3
  * ┌──────┬──────────────────────────────────┐┌─────────────────────────────────────────┐
  * │ Esc  │                                  ││                                         │
  * └──────┴──────────────────────────────────┘└─────────────────────────────────────────┘
@@ -195,7 +217,7 @@
 
 #define STD_ESC MT_ESC
 
-/*
+/* R4
  * ┌──────┬──────────────────────────────────┐┌──────────────────────────────────┬──────┐
  * │ Shift│                                  ││                                  │Enter │
  * └──────┴──────────────────────────────────┘└──────────────────────────────────┴──────┘
@@ -251,6 +273,8 @@
   BOTTOM_ROW      \
 )
 
+#define QWERTY_LAYER_5x12 ortho_5x12_expand(NUMBER_ROW, QWERTY_LAYER_4x12)
+
 /* Colemak Left Hand
  * ┌──────┬──────┬──────┬──────┬──────┐
  * │   Q  │   W  │   F  │   P  │   B  │
@@ -300,6 +324,8 @@
   BOTTOM_ROW       \
 )
 
+#define COLEMAK_LAYER_5x12 ortho_5x12_expand(NUMBER_ROW, COLEMAK_LAYER_4x12)
+
 /* Workman Left Hand
  * ┌──────┬──────┬──────┬──────┬──────┐
  * │   Q  │   D  │   R  │   W  │   B  │
@@ -347,6 +373,8 @@
   STD_LSFT,        \
   BOTTOM_ROW       \
 )
+
+#define WORKMAN_LAYER_5x12 ortho_5x12_expand(NUMBER_ROW, WORKMAN_LAYER_4x12)
 
 /* Dvorak Left Hand
  * ┌──────┬──────┬──────┬──────┬──────┐
@@ -397,6 +425,8 @@
   BOTTOM_ROW      \
 )
 
+#define DVORAK_LAYER_5x12 ortho_5x12_expand(NUMBER_ROW, DVORAK_LAYER_4x12)
+
 /* Game (Qwerty without one shot modifiers & tap dancing)
  * ┌──────┬──────┬──────┬──────┬──────┬──────┐┌──────┬──────┬──────┬──────┬──────┬──────┐
  * │ Tab  │   Q  │   W  │   E  │   R  │   T  ││   Y  │   U  │   I  │   O  │   P  │ Bksp │
@@ -416,6 +446,8 @@
   KC_LSFT, KC_ENT , \
   MO_ADJ , KC_LCTL, KC_LALT, KC_LGUI, LOWER  , KC_SPC , KC_SPC , RAISE  , KC_LEFT, KC_DOWN, KC_UP  , KC_RGHT \
 )
+
+#define GAME_LAYER_5x12 ortho_5x12_expand(NUMBER_ROW, GAME_LAYER_4x12)
 
 #define XXX_1x5 \
   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
@@ -451,6 +483,10 @@
   TD_ADJ , TD_CTL , TD_ALT , TD_GUI , XXXXXXX, KC_SPC , KC_SPC , KC_P0  , KC_P0  , KC_PDOT, KC_PENT, XXXXXXX \
 )
 
+#define NUMPAD_LAYER_5x12 ortho_5x12_expand( \
+  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_NLCK, KC_PAST, KC_PSLS, KC_BSPC, KC_BSPC, \
+  NUMPAD_LAYER_4x12 \
+)
 
 #define MOUSE_L \
   MS_BTN1, MS_BTN3, MS_BTN2, MS_BTN4, MS_BTN5, \
@@ -482,6 +518,11 @@
   TD_ADJ , TD_CTL , TD_ALT , TD_GUI , XXXXXXX, KC_SPC , XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX \
 )
 
+#define MOUSE_LAYER_5x12 ortho_5x12_expand( \
+  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
+  MOUSE_LAYER_4x12 \
+)
+
 #define LOWER_LAYER_L \
   KC_TILD, KC_EXLM, KC_AT  , KC_HASH, KC_DLR , KC_PERC, \
   KC_DEL , KC_MINS, KC_EQL , KC_LBRC, KC_RBRC, KC_BSLS  \
@@ -505,6 +546,11 @@
   ortho_2x12_expand(LOWER_LAYER_L, LOWER_LAYER_R), \
   BOTTOM_RAISE_LOWER_ROWS
 
+#define LOWER_LAYER_5x12 ortho_5x12_expand( \
+  KC_TILD, KC_EXLM, KC_AT  , KC_HASH, KC_DLR , KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_DEL , \
+  LOWER_LAYER_4x12 \
+)
+
 #define RAISE_LAYER_L \
   KC_GRV , KC_1   , KC_2   , KC_3   , KC_4   , KC_5   , \
   KC_DEL , KC_EXLM, KC_AT  , KC_HASH, KC_DLR , KC_PERC  \
@@ -513,7 +559,7 @@
   KC_6   , KC_7   , KC_8   , KC_9   , KC_0   , KC_BSPC, \
   KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_GRV   \
 
-/* Raisel
+/* Raise
  * ┌──────┬──────┬──────┬──────┬──────┬──────┐┌──────┬──────┬──────┬──────┬──────┬──────┐
  * │   `  │   1  │   2  │   3  │   4  │   5  ││   6  │   7  │   8  │   9  │   0  │ Bksp │
  * ├──────┼──────┼──────┼──────┼──────┼──────┤├──────┼──────┼──────┼──────┼──────┼──────┤
@@ -527,6 +573,8 @@
 #define RAISE_LAYER_4x12 \
   ortho_2x12_expand(RAISE_LAYER_L, RAISE_LAYER_R), \
   BOTTOM_RAISE_LOWER_ROWS
+
+#define RAISE_LAYER_5x12 ortho_5x12_expand(NUMBER_ROW, RAISE_LAYER_4x12)
 
 #ifdef AUDIO_ENABLE
 float tone_qwerty[][2]     = SONG(QWERTY_SOUND);
