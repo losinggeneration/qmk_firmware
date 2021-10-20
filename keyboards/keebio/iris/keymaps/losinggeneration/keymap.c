@@ -76,6 +76,17 @@ LAYOUT( \
                     TD_ADJ , TD_CTL ,                   \
   KC_LGUI,  LOWER , KC_LSFT, KC_SPC , RAISE  , KC_LGUI
 
+/*
+ *                  ┌──────┐┌──────┐
+ * ┌──────┐         │ Alt  ││Adjust│         ┌──────┐
+ * │ GUI  ├──────┐ ┌┴─────┬┘└┬─────┴┐ ┌──────┤ GUI  │
+ * └──────┤ Ctrl │ │Space │  │Space │ │Raise ├──────┘
+ *        └──────┘ └──────┘  └──────┘ └──────┘
+ */
+#define THUMB_GAME_LAYER_5x12                           \
+                    KC_LALT, TD_ADJ ,                   \
+  KC_LGUI, KC_LCTL, KC_SPC , LOWER  , RAISE  , KC_LGUI
+
 extern keymap_config_t keymap_config;
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -93,7 +104,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 */
 
 /* 5x12 */
-[_QWERTY]  = LAYOUT_ergo_5x12_expand( QWERTY_LAYER_5x12,  THUMB_DEFAULT_LAYER_5x12 ),
+[_QWERTY]  = LAYOUT_ergo_5x12_expand( QWERTY_LAYER_5x12 , THUMB_DEFAULT_LAYER_5x12 ),
 [_COLEMAK] = LAYOUT_ergo_5x12_expand( COLEMAK_LAYER_5x12, THUMB_DEFAULT_LAYER_5x12 ),
 [_WORKMAN] = LAYOUT_ergo_5x12_expand( WORKMAN_LAYER_5x12, THUMB_DEFAULT_LAYER_5x12 ),
 /* Dvorak
@@ -123,9 +134,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     THUMB_DEFAULT_LAYER_5x12
 ),
-[_GAME]    = LAYOUT_ergo_5x12_expand( GAME_LAYER_5x12,    THUMB_DEFAULT_LAYER_5x12 ),
-[_NUMPAD]  = LAYOUT_ergo_5x12_expand( NUMPAD_LAYER_5x12,  THUMB_DEFAULT_LAYER_5x12 ),
-[_MOUSE]   = LAYOUT_ergo_5x12_expand( MOUSE_LAYER_5x12,   THUMB_DEFAULT_LAYER_5x12 ),
+[_GAME]    = LAYOUT_ergo_5x12_expand( GAME_LAYER_5x12  , THUMB_GAME_LAYER_5x12    ),
+[_NUMPAD]  = LAYOUT_ergo_5x12_expand( NUMPAD_LAYER_5x12, THUMB_DEFAULT_LAYER_5x12 ),
+[_MOUSE]   = LAYOUT_ergo_5x12_expand( MOUSE_LAYER_5x12 , THUMB_DEFAULT_LAYER_5x12 ),
 [_LOWER]   = LAYOUT_ergo_5x12_expand(
     NUMBER_ROW,
     ortho_2x12_expand(LOWER_LAYER_L, LOWER_LAYER_R),
