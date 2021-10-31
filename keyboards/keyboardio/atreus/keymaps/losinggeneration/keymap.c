@@ -1,39 +1,44 @@
-#include QMK_KEYBOARD_H
-#include "losinggeneration-config.h"
-#include "losinggeneration-keymap.h"
+#include "config.h"
+#include "layouts.h"
 
-#if 0
-const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-  [_QW] = LAYOUT( /* Qwerty */
-    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                      KC_Y,    KC_U,    KC_I,    KC_O,    KC_P    ,
-    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                      KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN ,
-    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_GRV,  KC_BSLS, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH ,
-    KC_ESC, KC_TAB, KC_LGUI,  KC_LSFT, KC_BSPC,  KC_LCTL, KC_LALT, KC_SPC,  MO(_RS), KC_MINS, KC_QUOT, KC_ENT ),
+/* Use a left & right hand from my user layout, a bottom row, & cluster to
+ * construct an expected layout.
+ */
+#define ergo_4x10(              \
+  /* Left hand */               \
+  K00, K01, K02, K03, K04,      \
+  K10, K11, K12, K13, K14,      \
+  K20, K21, K22, K23, K24,      \
+  /* Right hand */              \
+  K05, K06, K07, K08, K09,      \
+  K15, K16, K17, K18, K19, K1x, \
+  K25, K26, K27, K28, K29,      \
+  /* Bottom row */              \
+  K30, K31, K32, K33, K34,      \
+  K35, K36, K37, K38, K39,      \
+  /* Cluster */                 \
+  K2b, K2c,                     \
+  K3b, K3c                      \
+)                                                             \
+  K00, K01, K02, K03, K04,           K05, K06, K07, K08, K09, \
+  K10, K11, K12, K13, K14,           K15, K16, K17, K18, K19, \
+  K20, K21, K22, K23, K24, K2b, K2c, K25, K26, K27, K28, K29, \
+  K30, K31, K32, K33, K34, K3b, K3c, K35, K36, K37, K38, K39
 
-  /*
-   *  !       @     up     {    }        ||     pgup    7     8     9    *
-   *  #     left   down  right  $        ||     pgdn    4     5     6    +
-   *  [       ]      (     )    &        ||       `     1     2     3    \
-   * lower  insert super shift bksp ctrl || alt space   fn    .     0    =
-   */
-  [_RS] = LAYOUT( /* [> RAISE <] */
-    KC_EXLM, KC_AT,   KC_UP,   KC_DLR,  KC_PERC,                  KC_PGUP, KC_7,    KC_8,   KC_9, KC_BSPC,
-    KC_LPRN, KC_LEFT, KC_DOWN, KC_RGHT, KC_RPRN,                  KC_PGDN, KC_4,    KC_5,   KC_6, KC_BSLS,
-    KC_LBRC, KC_RBRC, KC_HASH, KC_LBRC, KC_RBRC, KC_CIRC, KC_AMPR,KC_ASTR, KC_1,    KC_2,   KC_3, KC_PLUS,
-    TG(_LW), KC_INS,  KC_LGUI, KC_LSFT, KC_BSPC, KC_LCTL, KC_LALT,KC_SPC,  KC_TRNS, KC_DOT, KC_0, KC_EQL ),
-  /*
-   * insert home   up  end   pgup       ||      up     F7    F8    F9   F10
-   *  del   left  down right pgdn       ||     down    F4    F5    F6   F11
-   *       volup             reset      ||             F1    F2    F3   F12
-   *       voldn  super shift bksp ctrl || alt space   L0  prtsc scroll pause
-   */
-  [_LW] = LAYOUT( /* [> LOWER <] */
-    KC_INS,  KC_HOME, KC_UP,   KC_END,  KC_PGUP,                   KC_UP,   KC_F7,   KC_F8,   KC_F9,   KC_F10  ,
-    KC_DEL,  KC_LEFT, KC_DOWN, KC_RGHT, KC_PGDN,                   KC_DOWN, KC_F4,   KC_F5,   KC_F6,   KC_F11  ,
-    KC_NO,   KC_VOLU, KC_NO,   KC_NO,   RESET,   _______, _______, KC_NO,   KC_F1,   KC_F2,   KC_F3,   KC_F12  ,
-    KC_NO,   KC_VOLD, KC_LGUI, KC_LSFT, KC_BSPC, KC_LCTL, KC_LALT, KC_SPC,  TO(_QW), KC_PSCR, KC_SLCK, KC_PAUS )
-};
-#endif
+/* Take a 2x12 & cuts off the left & right most columns to make it a 2x10 */
+#define ergo_2x10(              \
+  K0X, K00, K01, K02, K03, K04,           K05, K06, K07, K08, K09, K0Y, \
+  K1X, K10, K11, K12, K13, K14,           K15, K16, K17, K18, K19, K1Y  \
+)                                                             \
+  K00, K01, K02, K03, K04,           K05, K06, K07, K08, K09, \
+  K10, K11, K12, K13, K14,           K15, K16, K17, K18, K19 \
+
+
+#define ergo_4x10_expand(...) ergo_4x10(__VA_ARGS__)
+#define ergo_2x10_expand(...) ergo_2x10(__VA_ARGS__)
+
+#define LAYOUT_ergo_4x10_expand(...) LAYOUT(__VA_ARGS__)
+
 
 /*
  * ┌───────┬───────┬───────┬───────┬───────┬───────┐┌───────┬───────┬───────┬───────┬───────┬───────┐
@@ -42,11 +47,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 #undef BOTTOM_ROW
 #define BOTTOM_ROW(KC_ANY) \
-    KC_TAB , TD_CTL, TD_ALT, LOWER ,KC_LSFT,KC_BSPC,KC_ENTER, KC_SPC, RAISE , KC_DEL, KC_ANY, KC_ESC
+  KC_TAB , TD_CTL, TD_ALT, LOWER ,KC_LSFT,KC_BSPC,KC_ENTER, KC_SPC, RAISE , KC_DEL, KC_ANY, KC_ESC
 
+#define BOTTOM(KC_ANY) \
+  KC_TAB , TD_CTL, TD_ALT, LOWER ,KC_LSFT, KC_SPC, RAISE , KC_DEL, KC_ANY, KC_ESC
+
+#define CLUSTER \
+  TD_GUI ,TD_ADJ, \
+  KC_BSPC,KC_ENTER
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-[_QWERTY]  = CATMAP(
+[_QWERTY]  = LAYOUT_ergo_4x10_expand(
 /* Qwerty
  * ┌───────┬───────┬───────┬───────┬───────┐                ┌───────┬───────┬───────┬───────┬───────┐
  * │   Q   │    W  │    E  │   R   │   T   │                │   Y   │   U   │   I   │   O   │   P   │
@@ -58,10 +69,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * │ Adjust│ Ctrl  │  Alt  │  GUI  │ Bksp  │ Lower ││ Raise │ Space │  Left │  Down │  Up   │ Right │
  * └───────┴───────┴───────┴───────┴───────┴───────┘└───────┴───────┴───────┴───────┴───────┴───────┘
  */
-      KC_Q , KC_W  , KC_E  , KC_R  , KC_T  ,                 KC_Y  , KC_U  , KC_I  , KC_O  , KC_P  ,
-      KC_A , KC_S  , KC_D  , KC_F  , KC_G  ,                 KC_H  , KC_J  ,  KC_K , KC_L  ,KC_SCLN,
-      KC_Z , KC_X  , KC_C  , KC_V  , KC_B  , TD_GUI, TD_ADJ, KC_N  , KC_M  ,KC_COMM,KC_DOT ,KC_SLSH,
-      BOTTOM_ROW(KC_QUOT)
+  ergo_4x10_expand(
+    QWERTY_LAYER_L, QWERTY_LAYER_R,
+    BOTTOM(KC_QUOT),
+    CLUSTER
+  )
 ),
 
 /* Colemak
@@ -75,11 +87,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * │ Adjust│ Ctrl  │  Alt  │  GUI  │ Bkspc │ Lower ││ Raise │ Space │  Left │  Down │   Up  │ Right │
  * └───────┴───────┴───────┴───────┴───────┴───────┘└───────┴───────┴───────┴───────┴───────┴───────┘
  */
-[_COLEMAK] = CATMAP(
-    KC_Q   , KC_W   , KC_F , KC_P  , KC_G  ,                   KC_J ,  KC_L ,  KC_U ,  KC_Y ,KC_SCLN,
-    KC_A   , KC_R   , KC_S , KC_T  , KC_D  ,                   KC_H ,  KC_N ,  KC_E ,  KC_I ,  KC_O ,
-    KC_Z   , KC_X   , KC_C , KC_V  , KC_B  , TD_GUI, TD_ADJ ,  KC_K ,  KC_M ,KC_COMM, KC_DOT,KC_SLSH,
-   BOTTOM_ROW(KC_QUOT)
+[_COLEMAK] = LAYOUT_ergo_4x10_expand(
+  ergo_4x10_expand(
+    COLEMAK_LAYER_L, COLEMAK_LAYER_R,
+    BOTTOM(KC_QUOT),
+    CLUSTER
+  )
 ),
 
 /* Dvorak
@@ -93,14 +106,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * │  Tab  │ Ctrl  │  Alt  │ Lower │ Shift │ Bkspc ││ Enter │ Space │ Raise │  Del  │   /   │  Esc  │
  * └───────┴───────┴───────┴───────┴───────┴───────┘└───────┴───────┴───────┴───────┴───────┴───────┘
  */
-[_DVORAK]  = CATMAP(
-    KC_QUOT,KC_COMM, KC_DOT,  KC_P ,  KC_Y ,                   KC_F ,  KC_G ,  KC_C ,  KC_R ,  KC_L ,
-    KC_A   , KC_O  ,  KC_E ,  KC_U ,  KC_I ,                   KC_D ,  KC_H ,  KC_T ,  KC_N ,  KC_S ,
-    KC_SCLN, KC_Q  ,  KC_J ,  KC_K ,  KC_X , TD_GUI,  TD_ADJ,  KC_B ,  KC_M ,  KC_W ,  KC_V ,  KC_Z ,
-    BOTTOM_ROW(KC_SLSH)
+[_DVORAK]  = LAYOUT_ergo_4x10_expand(
+  ergo_4x10_expand(
+    DVORAK_LAYER_L, DVORAK_LAYER_R,
+    BOTTOM(KC_SLSH),
+    CLUSTER
+  )
 ),
 
-#if 0
 /* Game (Qwerty without one shot modifiers & tap dancing)
  * ┌───────┬───────┬───────┬───────┬───────┐                ┌───────┬───────┬───────┬───────┬───────┐
  * │    Q  │    W  │    E  │    R  │    T  │                │    Y  │    U  │    I  │    O  │    P  │
@@ -112,11 +125,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * │ Adjust│  Ctrl │  Alt  │  GUI  │ Lower │ Space ││ Space │ Raise │  Left │  Down │   Up  │ Right │
  * └───────┴───────┴───────┴───────┴───────┴───────┘└───────┴───────┴───────┴───────┴───────┴───────┘
  */
-[_GAME]    = CATMAP(
-  KC_TAB , KC_Q   , KC_W   , KC_E   , KC_R   , KC_T   , KC_Y   , KC_U   , KC_I   , KC_O   , KC_P   , KC_BSPC, \
-  KC_ESC , KC_A   , KC_S   , KC_D   , KC_F   , KC_G   , KC_H   , KC_J   , KC_K   , KC_L   , KC_SCLN, KC_QUOT, \
-  KC_LSFT, KC_Z   , KC_X   , KC_C   , KC_V   , KC_B   , KC_N   , KC_M   , KC_COMM, KC_DOT , KC_SLSH, KC_ENT , \
-  MO_ADJ , KC_LCTL, KC_LALT, KC_LGUI, LOWER  , KC_SPC , KC_SPC , RAISE  , KC_LEFT, KC_DOWN, KC_UP  , KC_RGHT
+[_GAME]    = LAYOUT_ergo_4x10_expand(
+  ergo_4x10_expand(
+    QWERTY_LAYER_L, QWERTY_LAYER_R,
+    MO_ADJ , KC_LCTL, KC_LALT, KC_LGUI, LOWER  ,  RAISE  , KC_LEFT, KC_DOWN, KC_UP  , KC_RGHT,
+    _______, _______,
+    KC_SPC , KC_SPC
+  )
 ),
 
 /* Number pad
@@ -130,10 +145,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * │ Adjust│  Ctrl │  Alt  │  GUI  │  XXX  │ Space ││ Space │    *  │   0   │   .   │  ENT  │  NLCK │
  * └───────┴───────┴───────┴───────┴───────┴───────┘└───────┴───────┴───────┴───────┴───────┴───────┘
  */
-[_NUMPAD]  = CATMAP(
-  KC_TAB , XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_NLCK, KC_P7  , KC_P8  , KC_P9  , KC_PMNS, KC_BSPC, \
-  KC_ESC , XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_PAST, KC_P4  , KC_P5  , KC_P6  , KC_PPLS, KC_BSPC, \
-  KC_LSFT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_PSLS, KC_P1  , KC_P2  , KC_P3  , KC_PENT, XXXXXXX, \
+[_NUMPAD]  = LAYOUT_ergo_4x10_expand(
+  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   KC_NLCK, KC_P7  , KC_P8  , KC_P9  , KC_PMNS,
+  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   KC_PAST, KC_P4  , KC_P5  , KC_P6  , KC_PPLS,
+  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______, _______, KC_PSLS, KC_P1  , KC_P2  , KC_P3  , KC_PENT,
   TD_ADJ , TD_CTL , TD_ALT , TD_GUI , XXXXXXX, KC_SPC , KC_SPC , KC_P0  , KC_P0  , KC_PDOT, KC_PENT, XXXXXXX
 ),
 
@@ -141,29 +156,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ┌───────┬───────┬───────┬───────┬───────┐                ┌───────┬───────┬───────┬───────┬───────┐
  * │       │       │       │       │       │                │       │       │       │       │       │
  * ├───────┼───────┼───────┼───────┼───────┤                ├───────┼───────┼───────┼───────┼───────┤
- * │       │       │       │       │       │                │       │       │       │       │       │
+ * │  MB_4 │  MB_2 │  MB_3 │  MB_1 │ MB_5  │                │       │  M_LT │  M_UP │  M_DN │  M_RT │
  * ├───────┼───────┼───────┼───────┼───────┼───────┐┌───────┼───────┼───────┼───────┼───────┼───────┤
- * │       │       │       │       │       │       ││       │       │       │       │       │       │
+ * │       │  MW_L │  MW_U │  MW_D │ MW_R  │       ││  MA_0 │       │       │       │       │       │
  * ├───────┼───────┼───────┼───────┼───────┼───────┤├───────┼───────┼───────┼───────┼───────┼───────┤
- * │       │       │       │       │       │       ││       │       │       │       │       │       │
+ * │ Adjust│       │       │       │ Shift │       ││  MA_1 │ MA_2  │       │       │       │       │
  * └───────┴───────┴───────┴───────┴───────┴───────┘└───────┴───────┴───────┴───────┴───────┴───────┘
- * ,-----------------------------------------------..-----------------------------------------------.
- * |  Tab  |  MB_1 |  MB_3 |  MB_2 |  MB_4 |  MB_5 || MA_0  | MB_1  | MB_3  | MB_2  | MB_4  | MB_5  |
- * |-------+-------+-------+-------+-------+-------||-------+-------+-------+-------+-------+-------|
- * |  Esc  |  MW_L |  MW_U |  MW_D |  MW_R |  XXX  || MA_1  | M_LT  | M_UP  | M_DN  | M_RT  | XXX   |
- * |-------+-------+-------+-------+-------+-------||-------+-------+-------+-------+-------+-------|
- * | Shift |  MA_0 |  MA_1 |  MA_2 |  XXX  |  XXX  || MA_2  | MW_L  | MW_U  | MW_D  | MW_R  | XXX   |
- * |-------+-------+-------+-------+-------+-------||-------+-------+-------+-------+-------+-------|
- * | Adjust|  Ctrl |  Alt  |  GUI  |  XXX  | Space || XXX   | XXX   | XXX   |  XXX  | XXX   | XXX   |
- * `-----------------------------------------------''-----------------------------------------------'
  */
-[_MOUSE]   = CATMAP(
-  KC_TAB , MS_BTN1, MS_BTN3, MS_BTN2, MS_BTN4, MS_BTN5, MS_ACL0, MS_BTN1, MS_BTN3, MS_BTN2, MS_BTN4, MS_BTN5, \
-  KC_ESC , MW_LEFT, MW_DOWN, MW_UP  , MW_RGHT, XXXXXXX, MS_ACL1, MS_LEFT, MS_DOWN, MS_UP  , MS_RGHT, XXXXXXX, \
-  KC_LSFT, MS_ACL0, MS_ACL1, MS_ACL2, XXXXXXX, XXXXXXX, MS_ACL2, MW_LEFT, MW_DOWN, MW_UP  , MW_RGHT, XXXXXXX, \
-  TD_ADJ , TD_CTL , TD_ALT , TD_GUI , XXXXXXX, KC_SPC , XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
+[_MOUSE]   = LAYOUT_ergo_4x10_expand(
+  _______, _______, _______, _______, _______,                   _______, _______, _______, _______, _______,
+  MS_BTN4, MS_BTN2, MS_BTN3, MS_BTN1, MS_BTN5,                   _______, MS_LEFT, MS_DOWN, MS_UP  , MS_RGHT,
+  _______, MW_LEFT, MW_DOWN, MW_UP  , MW_RGHT, _______, MS_ACL0, _______, _______, _______, _______, _______,
+  TD_ADJ , _______, _______, _______, KC_LSFT, _______, MS_ACL1, MS_ACL2, _______, _______, _______, _______
 ),
-#endif
 
 /* Lower
  * ┌───────┬───────┬───────┬───────┬───────┐                ┌───────┬───────┬───────┬───────┬───────┐
@@ -176,11 +181,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * │       │       │       │       │       │       ││       │       │ Mute  │ Vol   │ Vol   │  ⏯    │
  * └───────┴───────┴───────┴───────┴───────┴───────┘└───────┴───────┴───────┴───────┴───────┴───────┘
  */
-[_LOWER]   = CATMAP(
-    KC_EXLM, KC_AT ,KC_HASH, KC_DLR,KC_PERC,                 KC_CIRC,KC_AMPR,KC_ASTR,KC_LPRN,KC_RPRN,
-    KC_MINS, KC_EQL,KC_LBRC,KC_RBRC,KC_BSLS,                 KC_PIPE,KC_UNDS,KC_PLUS,KC_LCBR,KC_RCBR,
-    _______,_______,_______,_______,_______,_______,_______, KC_PGUP,KC_PGDN,KC_HOME, KC_END, KC_MSTP, \
-    _______,_______,_______,_______,_______,KC_BSPC,_______,_______,KC_LEFT, KC_DOWN,  KC_UP ,KC_RGHT
+[_LOWER]   = LAYOUT_ergo_4x10_expand(
+  ergo_2x10_expand(ortho_2x12_expand(LOWER_LAYER_L, LOWER_LAYER_R)),
+  _______, _______, _______, _______, _______, _______, _______, KC_PGUP, KC_PGDN, KC_HOME,  KC_END, KC_MSTP,
+  _______, _______, _______, _______, _______, KC_BSPC, _______, _______, KC_LEFT, KC_DOWN,  KC_UP , KC_RGHT
 ),
 
 /* Raise
@@ -194,11 +198,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * │       │       │       │       │       │       ││       │       │ Mute  │ Vol   │ Vol   │  ⏯    │
  * └───────┴───────┴───────┴───────┴───────┴───────┘└───────┴───────┴───────┴───────┴───────┴───────┘
  */
-[_RAISE]   = CATMAP(
-    KC_1   , KC_2  , KC_3  , KC_4  ,  KC_5 ,                    KC_6,  KC_7 ,  KC_8 ,  KC_9 ,  KC_0 ,
-    KC_EXLM, KC_AT ,KC_HASH, KC_DLR,KC_PERC,                 KC_CIRC,KC_AMPR,KC_ASTR,KC_LPRN,KC_RPRN,
-    KC_TILD, KC_GRV,KC_SLSH,_______,_______,_______,_______, KC_PGUP,KC_PGDN,KC_HOME, KC_END, KC_MSTP, \
-    KC_LEFT,KC_DOWN,  KC_UP,KC_RGHT,_______,KC_BSPC,_______,_______,KC_MUTE, KC_VOLD, KC_VOLU, KC_MPLY
+[_RAISE]   = LAYOUT_ergo_4x10_expand(
+  ergo_2x10_expand(ortho_2x12_expand(RAISE_LAYER_L, RAISE_LAYER_R)),
+  KC_TILD, KC_GRV, KC_SLSH, _______, _______, _______, _______, KC_PGUP, KC_PGDN, KC_HOME, KC_END, KC_MSTP,
+  KC_LEFT, KC_DOWN,  KC_UP, KC_RGHT, _______, KC_BSPC, _______, _______, KC_MUTE, KC_VOLD,KC_VOLU, KC_MPLY
 ),
 
 /* Adjust (Lower + Raise)
@@ -212,12 +215,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * │       │       │       │       │       │       ││       │       │       │       │       │       │
  * └───────┴───────┴───────┴───────┴───────┴───────┘└───────┴───────┴───────┴───────┴───────┴───────┘
  */
-[_ADJUST] = CATMAP( \
-    /*_______,  KC_F1, KC_F2 , KC_F3 , KC_F4 ,                 TO_GAME, TO_NUM, TO_MS ,_______,KC_SLEP, \*/
-    _______,  KC_F1, KC_F2 , KC_F3 , KC_F4 ,                 _______,_______,_______,_______,KC_SLEP, \
-    _______,  KC_F5, KC_F6 , KC_F7 , KC_F8 ,                 QWERTY , DVORAK,COLEMAK,_______,_______, \
-    KC_CAPS,  KC_F9, KC_F10, KC_F11, KC_F12,_______, _______,_______,_______,_______,_______, RESET , \
-    _______,_______,_______,_______,_______,_______, _______,_______,_______,_______,_______,_______  \
+[_ADJUST] = LAYOUT_ergo_4x10_expand( \
+  _______,  KC_F1, KC_F2 , KC_F3 , KC_F4 ,                 TO_GAME, TO_NUM, TO_MS ,_______,KC_SLEP,
+  _______,  KC_F5, KC_F6 , KC_F7 , KC_F8 ,                 QWERTY , DVORAK,COLEMAK,_______,_______,
+  KC_CAPS,  KC_F9, KC_F10, KC_F11, KC_F12,_______, _______,_______,_______,_______,_______, RESET ,
+  _______,_______,_______,_______,_______,_______, _______,_______,_______,_______,_______,_______
 )
 
 };
