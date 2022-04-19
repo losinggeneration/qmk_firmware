@@ -275,7 +275,7 @@
 
 #define QWERTY_LAYER_5x12 ortho_5x12_expand(NUMBER_ROW, QWERTY_LAYER_4x12)
 
-/* Colemak Left Hand
+/* Colemak-DH Left Hand
  * ┌──────┬──────┬──────┬──────┬──────┐
  * │   Q  │   W  │   F  │   P  │   B  │
  * ├──────┼──────┼──────┼──────┼──────┤
@@ -289,28 +289,28 @@
   KC_A   , KC_R   , KC_S   , KC_T   , KC_G   , \
   KC_Z   , KC_X   , KC_C   , KC_D   , KC_V     \
 
-/* Colemak Right Hand
+/* Colemak-DH Right Hand
  * ┌──────┬──────┬──────┬──────┬──────┐
  * │   J  │   L  │   U  │   Y  │   ;  │
  * ├──────┼──────┼──────┼──────┼──────┼──────┐
- * │   K  │   N  │   E  │   I  │   O  │  "   │
+ * │   M  │   N  │   E  │   I  │   O  │  "   │
  * ├──────┼──────┼──────┼──────┼──────┼──────┘
- * │   M  │   H  │   ,  │   .  │   /  │
+ * │   K  │   H  │   ,  │   .  │   /  │
  * └──────┴──────┴──────┴──────┴──────┘
  */
 #define COLEMAK_LAYER_R \
   KC_J   , KC_L   , KC_U   , KC_Y   , KC_SCLN,           \
-  KC_K   , KC_N   , KC_E   , KC_I   , KC_O   ,  KC_QUOT, \
-  KC_M   , KC_H   , KC_COMM, KC_DOT , KC_SLSH            \
+  KC_M   , KC_N   , KC_E   , KC_I   , KC_O   ,  KC_QUOT, \
+  KC_K   , KC_H   , KC_COMM, KC_DOT , KC_SLSH            \
 
 
 /* Colemak-DH
  * ┌──────┬──────┬──────┬──────┬──────┬──────┐┌──────┬──────┬──────┬──────┬──────┬──────┐
  * │ Tab  │   Q  │   W  │   F  │   P  │   B  ││   J  │   L  │   U  │   Y  │   ;  │ Bksp │
  * ├──────┼──────┼──────┼──────┼──────┼──────┤├──────┼──────┼──────┼──────┼──────┼──────┤
- * │ Esc  │   A  │   R  │   S  │   T  │   G  ││   K  │   N  │   E  │   I  │   O  │  "   │
+ * │ Esc  │   A  │   R  │   S  │   T  │   G  ││   M  │   N  │   E  │   I  │   O  │  "   │
  * ├──────┼──────┼──────┼──────┼──────┼──────┤├──────┼──────┼──────┼──────┼──────┼──────┤
- * │ Shift│   Z  │   X  │   C  │   D  │   V  ││   M  │   H  │   ,  │   .  │   /  │Enter │
+ * │ Shift│   Z  │   X  │   C  │   D  │   V  ││   K  │   H  │   ,  │   .  │   /  │Enter │
  * ├──────┼──────┼──────┼──────┼──────┼──────┤├──────┼──────┼──────┼──────┼──────┼──────┤
  * │Adjust│ Ctrl │ Alt  │ GUI  │Lower │ Del  ││Space │Raise │ Left │ Down │  Up  │Right │
  * └──────┴──────┴──────┴──────┴──────┴──────┘└──────┴──────┴──────┴──────┴──────┴──────┘
