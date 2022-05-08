@@ -7,8 +7,8 @@ BACKLIGHT_ENABLE = no    # Enable keyboard backlight functionality
 BLUETOOTH_ENABLE = no    # Enable Bluetooth with the Adafruit EZ-Key HID
 BOOTMAGIC_ENABLE = yes   # Virtual DIP switch configuration(+1000)
 COMMAND_ENABLE   = yes   # Commands for debug and configuration
-CONSOLE_ENABLE   = no    # Console for debug(+400)
+CONSOLE_ENABLE   = yes   # Console for debug(+400)
 MIDI_ENABLE      = no    # MIDI controls
-NKRO_ENABLE      = no    # Nkey Rollover - if this doesn't work, see here: https://github.com/tmk/tmk_keyboard/wiki/FAQ#nkro-doesnt-work
+NKRO_ENABLE      = yes   # Nkey Rollover - if this doesn't work, see here: https://github.com/tmk/tmk_keyboard/wiki/FAQ#nkro-doesnt-work
 RGBLIGHT_ENABLE  = no    # Enable WS2812 RGB underlight.
 

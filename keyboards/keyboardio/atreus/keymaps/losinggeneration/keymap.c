@@ -13,12 +13,12 @@
   K05, K06, K07, K08, K09,      \
   K15, K16, K17, K18, K19, K1x, \
   K25, K26, K27, K28, K29,      \
-  /* Bottom row */              \
-  K30, K31, K32, K33, K34,      \
-  K35, K36, K37, K38, K39,      \
   /* Cluster */                 \
   K2b, K2c,                     \
-  K3b, K3c                      \
+  /* Bottom row */              \
+  K30, K31, K32, K33, K34,      \
+  K3b, K3c,                     \
+  K35, K36, K37, K38, K39       \
 )                                                             \
   K00, K01, K02, K03, K04,           K05, K06, K07, K08, K09, \
   K10, K11, K12, K13, K14,           K15, K16, K17, K18, K19, \
@@ -39,22 +39,17 @@
 
 #define LAYOUT_ergo_4x10_expand(...) LAYOUT(__VA_ARGS__)
 
-
 /*
  * ┌───────┬───────┬───────┬───────┬───────┬───────┐┌───────┬───────┬───────┬───────┬───────┬───────┐
- * │Adjust │ Ctrl  │  Alt  │  GUI  │ SHIFT │ Bksp  ││ Enter │ Space │ Left  │ Down  │   Up  │ Right │
+ * │CTL_TAB│  Alt  │  GUI  │ Lower │ SHIFT │ Bksp  ││ Enter │ Space │ Raise │  Del  │       │  Esc  │
  * └───────┴───────┴───────┴───────┴───────┴───────┘└───────┴───────┴───────┴───────┴───────┴───────┘
  */
 #undef BOTTOM_ROW
 #define BOTTOM_ROW(KC_ANY) \
-  KC_TAB , TD_CTL, TD_ALT, LOWER ,KC_LSFT,KC_BSPC,KC_ENTER, KC_SPC, RAISE , KC_DEL, KC_ANY, KC_ESC
-
-#define BOTTOM(KC_ANY) \
-  KC_TAB , TD_CTL, TD_ALT, LOWER ,KC_LSFT, KC_SPC, RAISE , KC_DEL, KC_ANY, KC_ESC
+  MT_TAB , TD_ALT, TD_GUI, LOWER ,KC_LSFT,KC_BSPC,KC_ENTER, KC_SPC, RAISE , KC_DEL, KC_ANY, KC_ESC
 
 #define CLUSTER \
-  TD_GUI ,TD_ADJ, \
-  KC_BSPC,KC_ENTER
+  TD_GUI ,TD_ADJ
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_QWERTY]  = LAYOUT_ergo_4x10_expand(
@@ -66,13 +61,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ├───────┼───────┼───────┼───────┼───────┼───────┐┌───────┼───────┼───────┼───────┼───────┼───────┤
  * │   Z   │    X  │    C  │   V   │   B   │       ││       │   N   │   M   │   ,   │   .   │   /   │
  * ├───────┼───────┼───────┼───────┼───────┼───────┤├───────┼───────┼───────┼───────┼───────┼───────┤
- * │ Adjust│ Ctrl  │  Alt  │  GUI  │ Bksp  │ Lower ││ Raise │ Space │  Left │  Down │  Up   │ Right │
+ * │CTL_TAB│  Alt  │  GUI  │ Lower │ SHIFT │ Bksp  ││ Enter │ Space │ Raise │  Del  │   "   │  Esc  │
  * └───────┴───────┴───────┴───────┴───────┴───────┘└───────┴───────┴───────┴───────┴───────┴───────┘
  */
   ergo_4x10_expand(
     QWERTY_LAYER_L, QWERTY_LAYER_R,
-    BOTTOM(KC_QUOT),
-    CLUSTER
+    CLUSTER,
+    BOTTOM_ROW(KC_QUOT)
   )
 ),
 
@@ -84,14 +79,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ├───────┼───────┼───────┼───────┼───────┼───────┐┌───────┼───────┼───────┼───────┼───────┼───────┤
  * │   Z   │   X   │   C   │   V   │   B   │       ││       │   K   │   M   │   ,   │   .   │   /   │
  * ├───────┼───────┼───────┼───────┼───────┼───────┤├───────┼───────┼───────┼───────┼───────┼───────┤
- * │ Adjust│ Ctrl  │  Alt  │  GUI  │ Bkspc │ Lower ││ Raise │ Space │  Left │  Down │   Up  │ Right │
+ * │CTL_TAB│  Alt  │  GUI  │ Lower │ SHIFT │ Bksp  ││ Enter │ Space │ Raise │  Del  │   "   │  Esc  │
  * └───────┴───────┴───────┴───────┴───────┴───────┘└───────┴───────┴───────┴───────┴───────┴───────┘
  */
 [_COLEMAK] = LAYOUT_ergo_4x10_expand(
   ergo_4x10_expand(
     COLEMAK_LAYER_L, COLEMAK_LAYER_R,
-    BOTTOM(KC_QUOT),
-    CLUSTER
+    CLUSTER,
+    BOTTOM_ROW(KC_QUOT)
   )
 ),
 
@@ -103,14 +98,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ├───────┼───────┼───────┼───────┼───────┼───────┐┌───────┼───────┼───────┼───────┼───────┼───────┤
  * │   ;   │    Q  │    J  │   K   │   X   │  GUI  ││ Adjust│   B   │   M   │   W   │   V   │   Z   │
  * ├───────┼───────┼───────┼───────┼───────┼───────┤├───────┼───────┼───────┼───────┼───────┼───────┤
- * │  Tab  │ Ctrl  │  Alt  │ Lower │ Shift │ Bkspc ││ Enter │ Space │ Raise │  Del  │   /   │  Esc  │
+ * │CTL_TAB│  Alt  │  GUI  │ Lower │ SHIFT │ Bksp  ││ Enter │ Space │ Raise │  Del  │   /   │  Esc  │
  * └───────┴───────┴───────┴───────┴───────┴───────┘└───────┴───────┴───────┴───────┴───────┴───────┘
  */
 [_DVORAK]  = LAYOUT_ergo_4x10_expand(
   ergo_4x10_expand(
     DVORAK_LAYER_L, DVORAK_LAYER_R,
-    BOTTOM(KC_SLSH),
-    CLUSTER
+    CLUSTER,
+    BOTTOM_ROW(KC_SLSH)
   )
 ),
 
@@ -127,29 +122,28 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_GAME]    = LAYOUT_ergo_4x10_expand(
   ergo_4x10_expand(
-    QWERTY_LAYER_L, QWERTY_LAYER_R,
-    MO_ADJ , KC_LCTL, KC_LALT, KC_LGUI, LOWER  ,  RAISE  , KC_LEFT, KC_DOWN, KC_UP  , KC_RGHT,
-    _______, _______,
-    KC_SPC , KC_SPC
+                                          QWERTY_LAYER_L, QWERTY_LAYER_R,
+                                                 _______, _______,
+    MO_ADJ , KC_LCTL, KC_LALT, KC_LGUI, LOWER  , KC_SPC ,  KC_SPC,  RAISE , KC_LEFT, KC_DOWN, KC_UP  , KC_RGHT
   )
 ),
 
 /* Number pad
  * ┌───────┬───────┬───────┬───────┬───────┐                ┌───────┬───────┬───────┬───────┬───────┐
- * │  Tab  │  XXX  │  XXX  │  XXX  │  XXX  │                │    7  │   8   │   9   │  -    │  BKSP │
+ * │  Tab  │  XXX  │  XXX  │  XXX  │  XXX  │                │  NLCK │   7   │   8   │   9   │   -   │
  * ├───────┼───────┼───────┼───────┼───────┤                ├───────┼───────┼───────┼───────┼───────┤
- * │  Esc  │  XXX  │  XXX  │  XXX  │  XXX  │                │    4  │   5   │   6   │  +    │  BKSP │
+ * │  Esc  │  XXX  │  XXX  │  XXX  │  XXX  │                │   *   │   4   │   5   │   6   │   +   │
  * ├───────┼───────┼───────┼───────┼───────┼───────┐┌───────┼───────┼───────┼───────┼───────┼───────┤
- * │ Shift │  XXX  │  XXX  │  XXX  │  XXX  │  XXX  ││   /   │    1  │   2   │   3   │  ENT  │  XXX  │
+ * │ Shift │  XXX  │  XXX  │  XXX  │  XXX  │       ││       │   /   │   1   │   2   │   3   │  Ent  │
  * ├───────┼───────┼───────┼───────┼───────┼───────┤├───────┼───────┼───────┼───────┼───────┼───────┤
- * │ Adjust│  Ctrl │  Alt  │  GUI  │  XXX  │ Space ││ Space │    *  │   0   │   .   │  ENT  │  NLCK │
+ * │ Adjust│  Ctrl │  Alt  │  GUI  │  XXX  │ Space ││ BkSpc │ Space │   0   │   .   │   .   │  Ent  │
  * └───────┴───────┴───────┴───────┴───────┴───────┘└───────┴───────┴───────┴───────┴───────┴───────┘
  */
 [_NUMPAD]  = LAYOUT_ergo_4x10_expand(
   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   KC_NLCK, KC_P7  , KC_P8  , KC_P9  , KC_PMNS,
   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   KC_PAST, KC_P4  , KC_P5  , KC_P6  , KC_PPLS,
   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______, _______, KC_PSLS, KC_P1  , KC_P2  , KC_P3  , KC_PENT,
-  TD_ADJ , TD_CTL , TD_ALT , TD_GUI , XXXXXXX, KC_SPC , KC_SPC , KC_P0  , KC_P0  , KC_PDOT, KC_PENT, XXXXXXX
+  TD_ADJ , TD_CTL , TD_ALT , TD_GUI , XXXXXXX, KC_SPC , KC_BSPC, KC_SPC , KC_P0  , KC_P0  , KC_PDOT, KC_PENT
 ),
 
 /* Mouse movement
@@ -158,16 +152,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ├───────┼───────┼───────┼───────┼───────┤                ├───────┼───────┼───────┼───────┼───────┤
  * │  MB_4 │  MB_2 │  MB_3 │  MB_1 │ MB_5  │                │       │  M_LT │  M_UP │  M_DN │  M_RT │
  * ├───────┼───────┼───────┼───────┼───────┼───────┐┌───────┼───────┼───────┼───────┼───────┼───────┤
- * │       │  MW_L │  MW_U │  MW_D │ MW_R  │       ││  MA_0 │       │       │       │       │       │
+ * │  MW_L │  MW_U │  MW_D │  MW_R │       │       ││       │       │       │       │       │       │
  * ├───────┼───────┼───────┼───────┼───────┼───────┤├───────┼───────┼───────┼───────┼───────┼───────┤
- * │ Adjust│       │       │       │ Shift │       ││  MA_1 │ MA_2  │       │       │       │       │
+ * │       │       │       │       │ Shift │       ││  MA_0 │  MA_1 │  MA_2 │       │       │       │
  * └───────┴───────┴───────┴───────┴───────┴───────┘└───────┴───────┴───────┴───────┴───────┴───────┘
  */
 [_MOUSE]   = LAYOUT_ergo_4x10_expand(
   _______, _______, _______, _______, _______,                   _______, _______, _______, _______, _______,
   MS_BTN4, MS_BTN2, MS_BTN3, MS_BTN1, MS_BTN5,                   _______, MS_LEFT, MS_DOWN, MS_UP  , MS_RGHT,
-  _______, MW_LEFT, MW_DOWN, MW_UP  , MW_RGHT, _______, MS_ACL0, _______, _______, _______, _______, _______,
-  TD_ADJ , _______, _______, _______, KC_LSFT, _______, MS_ACL1, MS_ACL2, _______, _______, _______, _______
+  MW_LEFT, MW_DOWN, MW_UP  , MW_RGHT, _______, _______, _______, _______, _______, _______, _______, _______,
+  _______, _______, _______, _______, KC_LSFT, _______, MS_ACL0, MS_ACL1, MS_ACL2, _______, _______, _______
 ),
 
 /* Lower
