@@ -9,6 +9,7 @@
 #define TD_ALT TD(TD_LALT_RALT)
 #define MT_ENT SFT_T(KC_ENT)
 #define MT_ESC CTL_T(KC_ESC)
+#define MT_TAB RCTL_T(KC_TAB)
 
 /* Custom layer movements for keymaps */
 #define TD_ADJ  TD(TD_ADJUST)
