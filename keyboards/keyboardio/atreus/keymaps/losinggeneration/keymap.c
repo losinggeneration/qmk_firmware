@@ -39,18 +39,14 @@
 
 #define LAYOUT_ergo_4x10_expand(...) LAYOUT(__VA_ARGS__)
 
-
 /*
  * ┌───────┬───────┬───────┬───────┬───────┬───────┐┌───────┬───────┬───────┬───────┬───────┬───────┐
- * │Adjust │ Ctrl  │  Alt  │  GUI  │ SHIFT │ Bksp  ││ Enter │ Space │ Left  │ Down  │   Up  │ Right │
+ * │CTL_TAB│  Alt  │  GUI  │ Lower │ SHIFT │ Bksp  ││ Enter │ Space │ Raise │  Del  │       │  Esc  │
  * └───────┴───────┴───────┴───────┴───────┴───────┘└───────┴───────┴───────┴───────┴───────┴───────┘
  */
 #undef BOTTOM_ROW
 #define BOTTOM_ROW(KC_ANY) \
-  KC_TAB , TD_CTL, TD_ALT, LOWER ,KC_LSFT,KC_BSPC,KC_ENTER, KC_SPC, RAISE , KC_DEL, KC_ANY, KC_ESC
-
-#define BOTTOM(KC_ANY) \
-  KC_TAB , TD_CTL, TD_ALT, LOWER ,KC_LSFT, KC_SPC, RAISE , KC_DEL, KC_ANY, KC_ESC
+  MT_TAB , TD_ALT, TD_GUI, LOWER ,KC_LSFT, KC_SPC, RAISE , KC_DEL, KC_ANY, KC_ESC
 
 #define CLUSTER \
   TD_GUI ,TD_ADJ, \
@@ -66,12 +62,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ├───────┼───────┼───────┼───────┼───────┼───────┐┌───────┼───────┼───────┼───────┼───────┼───────┤
  * │   Z   │    X  │    C  │   V   │   B   │       ││       │   N   │   M   │   ,   │   .   │   /   │
  * ├───────┼───────┼───────┼───────┼───────┼───────┤├───────┼───────┼───────┼───────┼───────┼───────┤
- * │ Adjust│ Ctrl  │  Alt  │  GUI  │ Bksp  │ Lower ││ Raise │ Space │  Left │  Down │  Up   │ Right │
+ * │CTL_TAB│  Alt  │  GUI  │ Lower │ SHIFT │ Bksp  ││ Enter │ Space │ Raise │  Del  │   "   │  Esc  │
  * └───────┴───────┴───────┴───────┴───────┴───────┘└───────┴───────┴───────┴───────┴───────┴───────┘
  */
   ergo_4x10_expand(
     QWERTY_LAYER_L, QWERTY_LAYER_R,
-    BOTTOM(KC_QUOT),
+    BOTTOM_ROW(KC_QUOT),
     CLUSTER
   )
 ),
@@ -84,13 +80,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ├───────┼───────┼───────┼───────┼───────┼───────┐┌───────┼───────┼───────┼───────┼───────┼───────┤
  * │   Z   │   X   │   C   │   V   │   B   │       ││       │   K   │   M   │   ,   │   .   │   /   │
  * ├───────┼───────┼───────┼───────┼───────┼───────┤├───────┼───────┼───────┼───────┼───────┼───────┤
- * │ Adjust│ Ctrl  │  Alt  │  GUI  │ Bkspc │ Lower ││ Raise │ Space │  Left │  Down │   Up  │ Right │
+ * │CTL_TAB│  Alt  │  GUI  │ Lower │ SHIFT │ Bksp  ││ Enter │ Space │ Raise │  Del  │   "   │  Esc  │
  * └───────┴───────┴───────┴───────┴───────┴───────┘└───────┴───────┴───────┴───────┴───────┴───────┘
  */
 [_COLEMAK] = LAYOUT_ergo_4x10_expand(
   ergo_4x10_expand(
     COLEMAK_LAYER_L, COLEMAK_LAYER_R,
-    BOTTOM(KC_QUOT),
+    BOTTOM_ROW(KC_QUOT),
     CLUSTER
   )
 ),
@@ -103,13 +99,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ├───────┼───────┼───────┼───────┼───────┼───────┐┌───────┼───────┼───────┼───────┼───────┼───────┤
  * │   ;   │    Q  │    J  │   K   │   X   │  GUI  ││ Adjust│   B   │   M   │   W   │   V   │   Z   │
  * ├───────┼───────┼───────┼───────┼───────┼───────┤├───────┼───────┼───────┼───────┼───────┼───────┤
- * │  Tab  │ Ctrl  │  Alt  │ Lower │ Shift │ Bkspc ││ Enter │ Space │ Raise │  Del  │   /   │  Esc  │
+ * │CTL_TAB│  Alt  │  GUI  │ Lower │ SHIFT │ Bksp  ││ Enter │ Space │ Raise │  Del  │   /   │  Esc  │
  * └───────┴───────┴───────┴───────┴───────┴───────┘└───────┴───────┴───────┴───────┴───────┴───────┘
  */
 [_DVORAK]  = LAYOUT_ergo_4x10_expand(
   ergo_4x10_expand(
     DVORAK_LAYER_L, DVORAK_LAYER_R,
-    BOTTOM(KC_SLSH),
+    BOTTOM_ROW(KC_SLSH),
     CLUSTER
   )
 ),
@@ -127,10 +123,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_GAME]    = LAYOUT_ergo_4x10_expand(
   ergo_4x10_expand(
-    QWERTY_LAYER_L, QWERTY_LAYER_R,
+                                 QWERTY_LAYER_L, QWERTY_LAYER_R,
     MO_ADJ , KC_LCTL, KC_LALT, KC_LGUI, LOWER  ,  RAISE  , KC_LEFT, KC_DOWN, KC_UP  , KC_RGHT,
-    _______, _______,
-    KC_SPC , KC_SPC
+                                        _______, _______,
+                                        KC_SPC , KC_SPC
   )
 ),
 
