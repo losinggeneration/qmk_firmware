@@ -48,9 +48,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_ADJUST] = LAYOUT_ortho_4x12_expand( \
   _______, KC_F1  ,  KC_F2 , KC_F3  , KC_F4  , BL_TOGG, QK_BOOT, TO_GAME, TO_NUM , TO_MS  , _______, KC_SLEP, \
-  _______, KC_F5  ,  KC_F6 , KC_F7  , KC_F8  , BL_DEC , TO_MIDI, QWERTY , COLEMAK, WORKMAN, DVORAK , _______, \
-  KC_CAPS, KC_F9  ,  KC_F10, KC_F11 , KC_F12 , BL_INC , _______, _______, _______, _______, KC_UP  , _______, \
-  _______, _______, _______, _______, _______, _______, _______, _______, XXXXXXX, KC_LEFT, KC_DOWN, KC_RGHT  \
+  _______, KC_F5  ,  KC_F6 , KC_F7  , KC_F8  , BL_DEC , _______, QWERTY , COLEMAK, WORKMAN, DVORAK , _______, \
+  KC_CAPS, KC_F9  ,  KC_F10, KC_F11 , KC_F12 , BL_INC , RGB_TOG, RGB_VAI, RGB_SAI, RGB_MOD, KC_UP  , _______, \
+  _______, _______, _______, _______, _______, _______, _______, _______, RGB_HUI, KC_LEFT, KC_DOWN, KC_RGHT  \
 )
 
 };

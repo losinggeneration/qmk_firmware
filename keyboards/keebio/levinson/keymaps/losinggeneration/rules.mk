@@ -8,8 +8,8 @@ BLUETOOTH_ENABLE = no    # Enable Bluetooth with the Adafruit EZ-Key HID
 BOOTMAGIC_ENABLE = no       # Enable Bootmagic Lite
 COMMAND_ENABLE   = no    # Commands for debug and configuration
 CONSOLE_ENABLE   = no    # Console for debug(+400)
-MIDI_ENABLE      = yes   # MIDI controls
+MIDI_ENABLE      = no    # MIDI controls
 NKRO_ENABLE      = no    # Nkey Rollover - if this doesn't work, see here: https://github.com/tmk/tmk_keyboard/wiki/FAQ#nkro-doesnt-work
-RGBLIGHT_ENABLE  = no    # Enable WS2812 RGB underlight.
+RGBLIGHT_ENABLE  = yes   # Enable WS2812 RGB underlight.
 
 EXTRALDFLAGS = -Wl,--relax
