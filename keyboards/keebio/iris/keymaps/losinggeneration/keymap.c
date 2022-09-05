@@ -74,7 +74,7 @@ LAYOUT( \
  */
 #define THUMB_DEFAULT_LAYER_5x12                        \
                     TD_ADJ , TD_CTL ,                   \
-  KC_LGUI,  LOWER , KC_LSFT, KC_SPC , RAISE  , KC_LGUI
+  KC_LGUI,  LOWER , KC_LSFT, KC_SPC , RAISE  , TD_GUI
 
 /*
  *                  ┌──────┐┌──────┐
