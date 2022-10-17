@@ -51,7 +51,7 @@
 #define _NUMPAD  5
 #define _MOUSE   6
 #define _MIDI    7
-#define _LOWER  14
-#define _RAISE  15
-#define _ADJUST 16
+#define _LOWER  13
+#define _RAISE  14
+#define _ADJUST 15
 
