@@ -121,13 +121,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * │ Adjust│  Ctrl │  Alt  │  GUI  │ Lower │ Space ││ Space │ Raise │  Left │  Down │   Up  │ Right │
  * └───────┴───────┴───────┴───────┴───────┴───────┘└───────┴───────┴───────┴───────┴───────┴───────┘
  */
-[_GAME]    = LAYOUT_ergo_4x10_expand(
-  ergo_4x10_expand(
-                                 QWERTY_LAYER_L, QWERTY_LAYER_R,
-    MO_ADJ , KC_LCTL, KC_LALT, KC_LGUI, LOWER  ,  RAISE  , KC_LEFT, KC_DOWN, KC_UP  , KC_RGHT,
-                                        _______, _______,
-                                        KC_SPC , KC_SPC
-  )
+[_GAME]    = LAYOUT_ergo_4x10(
+  KC_TAB , KC_Q   , KC_W   , KC_E   , KC_R   ,                   KC_T   , KC_Y   , KC_U   , KC_I   , KC_O   , \
+  KC_LCTL, KC_A   , KC_S   , KC_D   , KC_F   ,                   KC_G   , KC_H   , KC_J   , KC_K   , KC_L   , \
+  KC_LSHT, KC_Z   , KC_X   , KC_C   , KC_V   , LOWER  , KC_P   , KC_B   , KC_N   , KC_M   , KC_COMM, KC_DOT , \
+  KC_LALT, XXXXXXX, XXXXXXX, KC_LCTL, KC_SPC , RAISE  , XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, TD_ADJ 
 ),
 
 /* Number pad
@@ -160,10 +158,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * └───────┴───────┴───────┴───────┴───────┴───────┘└───────┴───────┴───────┴───────┴───────┴───────┘
  */
 [_MOUSE]   = LAYOUT_ergo_4x10_expand(
-  _______, _______, _______, _______, _______,                   _______, _______, _______, _______, _______,
-  MS_BTN4, MS_BTN2, MS_BTN3, MS_BTN1, MS_BTN5,                   _______, MS_LEFT, MS_DOWN, MS_UP  , MS_RGHT,
-  _______, MW_LEFT, MW_DOWN, MW_UP  , MW_RGHT, _______, MS_ACL0, _______, _______, _______, _______, _______,
-  TD_ADJ , _______, _______, _______, KC_LSFT, _______, MS_ACL1, MS_ACL2, _______, _______, _______, _______
+  _______, MS_BTN4, _______, MS_BTN5, _______,                   _______, _______, _______, _______, _______,
+  MW_UP  , MS_BTN2, MS_BTN3, MS_BTN1, _______,                   _______, MS_LEFT, MS_DOWN, MS_UP  , MS_RGHT,
+  MW_DOWN, _______, MW_LEFT, MW_RGHT, _______, _______, _______, _______, _______, _______, _______, _______,
+  TD_ADJ , _______, _______, _______, KC_LSFT, _______, MS_ACL0, MS_ACL2, MS_ACL1, _______, _______, _______
 ),
 
 /* Lower
