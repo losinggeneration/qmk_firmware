@@ -489,9 +489,9 @@
 )
 
 #define MOUSE_L \
-  MS_BTN1, MS_BTN3, MS_BTN2, MS_BTN4, MS_BTN5, \
-  MW_LEFT, MW_DOWN, MW_UP  , MW_RGHT, XXXXXXX, \
-  MS_ACL0, MS_ACL1, MS_ACL2, XXXXXXX, XXXXXXX  \
+  KC_MPRV, MS_BTN4, MS_BTN5, KC_MNXT, KC_MPLY, \
+  MS_ACL0, MS_BTN2, MS_BTN3, MS_BTN1, MW_UP  , \
+  MS_ACL1, MS_ACL2, MW_LEFT, MW_RGHT, MW_DOWN  \
 
 #define MOUSE_R \
   MS_ACL0, MS_BTN1, MS_BTN3, MS_BTN2, MS_BTN4,          \
@@ -500,11 +500,11 @@
 
 /* Mouse movement
  * ┌──────┬──────┬──────┬──────┬──────┬──────┐┌──────┬──────┬──────┬──────┬──────┬──────┐
- * │ Tab  │ MB_1 │ MB_3 │ MB_2 │ MB_4 │ MB_5 ││ MA_0 │ MB_1 │ MB_3 │ MB_2 │ MB_4 │ MB_5 │
+ * │ Tab  │ Prev │ MB_4 │ MB_5 │ Next │ Play ││ MA_0 │ MB_1 │ MB_3 │ MB_2 │ MB_4 │ MB_5 │
  * ├──────┼──────┼──────┼──────┼──────┼──────┤├──────┼──────┼──────┼──────┼──────┼──────┤
- * │ Esc  │ MW_L │ MW_U │ MW_D │ MW_R │ XXX  ││ MA_1 │ M_LT │ M_UP │ M_DN │ M_RT │ XXX  │
+ * │ Esc  │ MA_0 │ MB_2 │ MB_3 │ MB_1 │ MW_U ││ MA_1 │ M_LT │ M_UP │ M_DN │ M_RT │ XXX  │
  * ├──────┼──────┼──────┼──────┼──────┼──────┤├──────┼──────┼──────┼──────┼──────┼──────┤
- * │Shift │ MA_0 │ MA_1 │ MA_2 │ XXX  │ XXX  ││ MA_2 │ MW_L │ MW_U │ MW_D │ MW_R │ XXX  │
+ * │Shift │ MA_1 │ MA_2 │ MW_L │ MW_R │ MW_D ││ MA_2 │ MW_L │ MW_U │ MW_D │ MW_R │ XXX  │
  * ├──────┼──────┼──────┼──────┼──────┼──────┤├──────┼──────┼──────┼──────┼──────┼──────┤
  * │Adjust│ Ctrl │ Alt  │ GUI  │ XXX  │Space ││ XXX  │ XXX  │ XXX  │  XXX │ XXX  │ XXX  │
  * └──────┴──────┴──────┴──────┴──────┴──────┘└──────┴──────┴──────┴──────┴──────┴──────┘
