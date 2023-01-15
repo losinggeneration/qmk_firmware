@@ -78,6 +78,17 @@ LAYOUT( \
 
 /*
  *                  ┌──────┐┌──────┐
+ * ┌──────┐         │Adjust││ CTRL │         ┌──────┐
+ * │ Btn3 ├──────┐ ┌┴─────┬┘└┬─────┴┐ ┌──────┤ GUI  │
+ * └──────┤ Btn2 │ │ Btn1 │  │Space │ │Raise ├──────┘
+ *        └──────┘ └──────┘  └──────┘ └──────┘
+ */
+#define THUMB_MOUSE_LAYER                               \
+                    TD_ADJ , TD_CTL ,                   \
+  MS_BTN3, MS_BTN2, MS_BTN1, KC_SPC , RAISE  , TD_GUI
+
+/*
+ *                  ┌──────┐┌──────┐
  * ┌──────┐         │ Alt  ││Adjust│         ┌──────┐
  * │ GUI  ├──────┐ ┌┴─────┬┘└┬─────┴┐ ┌──────┤ GUI  │
  * └──────┤ Ctrl │ │Space │  │Space │ │Raise ├──────┘
@@ -136,7 +147,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ),
 [_GAME]    = LAYOUT_ergo_5x12_expand( GAME_LAYER_5x12  , THUMB_GAME_LAYER_5x12    ),
 [_NUMPAD]  = LAYOUT_ergo_5x12_expand( NUMPAD_LAYER_5x12, THUMB_DEFAULT_LAYER_5x12 ),
-[_MOUSE]   = LAYOUT_ergo_5x12_expand( MOUSE_LAYER_5x12 , THUMB_DEFAULT_LAYER_5x12 ),
+[_MOUSE]   = LAYOUT_ergo_5x12_expand( MOUSE_LAYER_5x12 , THUMB_MOUSE_LAYER ),
 [_LOWER]   = LAYOUT_ergo_5x12_expand(
     NUMBER_ROW,
     ortho_2x12_expand(LOWER_LAYER_L, LOWER_LAYER_R),
