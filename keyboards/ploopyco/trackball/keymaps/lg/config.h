@@ -20,9 +20,9 @@
 
 #define DYNAMIC_KEYMAP_LAYER_COUNT 8
 
-#define PLOOPY_DPI_OPTIONS { 800, 1200, 1600 }
+#define PLOOPY_DPI_OPTIONS { 800, 1200, 1600, 2400 }
 #define PLOOPY_DPI_DEFAULT 1
 #define PLOOPY_DRAGSCROLL_INVERT // This reverses the direction that the scroll is performed.
-#define PLOOPY_DRAGSCROLL_MULTIPLIER 0.12 // Sets the DPI multiplier to use when drag scroll is enabled. 
-//#define PLOOPY_DRAGSCROLL_FIXED // Normally, when activating Drag Scroll, it uses a fraction of the current DPI. You can define this to use a specific, set DPI rather than a fraction of the current DPI. 
+#define PLOOPY_DRAGSCROLL_MULTIPLIER 0.12 // Sets the DPI multiplier to use when drag scroll is enabled.
+//#define PLOOPY_DRAGSCROLL_FIXED // Normally, when activating Drag Scroll, it uses a fraction of the current DPI. You can define this to use a specific, set DPI rather than a fraction of the current DPI.
 //#define PLOOPY_DRAGSCROLL_DPI 100 // When the fixed DPI option is enabled, this sets the DPI to be used for Drag Scroll.
