@@ -6,6 +6,8 @@
 #include "eeconfig.h"
 #include "mousekey.h"
 
+/* clang-format off */
+
 #define ortho_2x12(             \
   /* left hand */               \
   K00, K01, K02, K03, K04, K05, \
@@ -596,6 +598,8 @@ enum custom_keycodes {
   DVORAK,
   LOWER,
   RAISE,
+  DBLNLCK,
+  DBLCLCK,
 };
 
 

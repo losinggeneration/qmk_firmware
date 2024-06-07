@@ -1,5 +1,7 @@
 #include "losinggeneration.h"
 
+/* clang-format off */
+
 /* This will ignore the bottom two keys on each side */
 #define LAYOUT_ergo_4x12(                                     \
   K00, K01, K02, K03, K04, K05, K06, K07, K08, K09, K0A, K0B, \
@@ -168,9 +170,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                      ┌──────┐                                            ┌──────┐
  *               ┌──────┤  F3  ├──────┐                              ┌──────┤RGB H+├──────┐
  * ┌──────┬──────┤  F2  ├──────┤  F4  ├──────┐                ┌──────┤RGB H-├──────┤RGB S-├──────┬──────┐
- * │      │  F1  ├──────┤  F7  ├──────┤RGB TG│                │ RESET├──────┤NumPad├──────┤RGB S+│Sleep │
+ * │ MNL  │  F1  ├──────┤  F7  ├──────┤RGB TG│                │ RESET├──────┤NumPad├──────┤RGB S+│Sleep │
  * ├──────┼──────┤  F6  ├──────┤  F8  ├──────┤                ├──────┤ Game ├──────┤Mouse ├──────┼──────┤
- * │      │  F5  ├──────┤  F11 ├──────┤RGB V+│                │      ├──────┤Colmak├──────┤      │      │
+ * │ MCAP │  F5  ├──────┤  F11 ├──────┤RGB V+│                │      ├──────┤Colmak├──────┤      │      │
  * ├──────┼──────┤  F10 ├──────┤  F12 ├──────┤                ├──────┤Qwerty├──────┤WorkMn├──────┼──────┤
  * │ CAPS │  F9  ├──────┤      ├──────┤RBG V-│                │      ├──────┤ Left ├──────┤Dvorak│      │
  * ├──────┼──────┤      ├──────┤      ├──────┤                ├──────┤      ├──────┤ Down ├──────┼──────┤
@@ -181,8 +183,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                                  └──────┘ └──────┘  └──────┘ └──────┘
  */
 [_ADJUST] = LAYOUT_expand(
-  _______, KC_F1  ,  KC_F2 , KC_F3  , KC_F4  , RGB_TOG,                   RESET  , RGB_HUD, RGB_HUI, RGB_SAD, RGB_SAI, KC_SLEP,
-  _______, KC_F5  ,  KC_F6 , KC_F7  , KC_F8  , RGB_VAI,                   _______, TO_GAME, TO_NUM , TO_MS  , _______, _______,
+  DBLNLCK, KC_F1  ,  KC_F2 , KC_F3  , KC_F4  , RGB_TOG,                   RESET  , RGB_HUD, RGB_HUI, RGB_SAD, RGB_SAI, KC_SLEP,
+  DBLCLCK, KC_F5  ,  KC_F6 , KC_F7  , KC_F8  , RGB_VAI,                   _______, TO_GAME, TO_NUM , TO_MS  , _______, _______,
   KC_CAPS, KC_F9  ,  KC_F10, KC_F11 , KC_F12 , RGB_VAD,                   _______, QWERTY , COLEMAK, WORKMAN, DVORAK , _______,
   _______, _______, _______, _______, _______, RGB_MOD, _______, _______, _______, _______, KC_LEFT, KC_DOWN, KC_UP  , KC_RGHT,
                                       _______, _______, _______, _______, _______, _______

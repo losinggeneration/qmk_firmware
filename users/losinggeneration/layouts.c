@@ -1,5 +1,7 @@
 #include "losinggeneration.h"
 
+/* clang-format off */
+
 __attribute__ ((weak)) void persistent_default_layer_set(uint16_t default_layer) {
   layer_state_set(default_layer);
   eeconfig_update_default_layer(default_layer);
@@ -84,6 +86,24 @@ __attribute__ ((weak)) bool process_record_user(uint16_t keycode, keyrecord_t *r
         layer_off(_RAISE);
         update_tri_layer(_LOWER, _RAISE, _ADJUST);
       }
+      return false;
+      break;
+
+    case DBLNLCK:
+      if (record->event.pressed) {
+        SEND_STRING(SS_TAP(X_NUMLOCK));
+        SEND_STRING(SS_TAP(X_NUMLOCK));
+      }
+
+      return false;
+      break;
+
+    case DBLCLCK:
+      if (record->event.pressed) {
+        SEND_STRING(SS_TAP(X_CAPS));
+        SEND_STRING(SS_TAP(X_CAPS));
+      }
+
       return false;
       break;
   }
