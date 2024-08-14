@@ -100,6 +100,12 @@ LAYOUT( \
                     KC_LALT, TD_ADJ ,                   \
   KC_LGUI, KC_LCTL, KC_SPC , LOWER  , RAISE  , KC_LGUI
 
+#define STANDARD_MODIFIERS \
+      STD_TAB, \
+      STD_ESC, \
+      TD_ALT, MT_ENT, \
+      BOTTOM_ROW
+
 extern keymap_config_t keymap_config;
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -117,9 +123,30 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 */
 
 /* 5x12 */
-[_QWERTY]  = LAYOUT_ergo_5x12_expand( QWERTY_LAYER_5x12 , THUMB_DEFAULT_LAYER_5x12 ),
-[_COLEMAK] = LAYOUT_ergo_5x12_expand( COLEMAK_LAYER_5x12, THUMB_DEFAULT_LAYER_5x12 ),
-[_WORKMAN] = LAYOUT_ergo_5x12_expand( WORKMAN_LAYER_5x12, THUMB_DEFAULT_LAYER_5x12 ),
+[_QWERTY]  = LAYOUT_ergo_5x12_expand(
+    NUMBER_ROW,
+    ortho_4x12_expand(
+        QWERTY_LAYER_L, QWERTY_LAYER_R,
+        STANDARD_MODIFIERS
+    ),
+    THUMB_DEFAULT_LAYER_5x12
+),
+[_COLEMAK] = LAYOUT_ergo_5x12_expand(
+    NUMBER_ROW,
+    ortho_4x12_expand(
+        COLEMAK_LAYER_L, COLEMAK_LAYER_R,
+        STANDARD_MODIFIERS
+    ),
+    THUMB_DEFAULT_LAYER_5x12
+),
+[_WORKMAN] = LAYOUT_ergo_5x12_expand(
+    NUMBER_ROW,
+    ortho_4x12_expand(
+        WORKMAN_LAYER_L, WORKMAN_LAYER_R,
+        STANDARD_MODIFIERS
+    ),
+    THUMB_DEFAULT_LAYER_5x12
+),
 /* Dvorak
  *                      ┌──────┐                                            ┌──────┐
  *               ┌──────┤   3  ├──────┐                              ┌──────┤   8  ├──────┐
@@ -140,10 +167,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     NUMBER_ROW,
     ortho_4x12_expand(
       DVORAK_LAYER_L, DVORAK_LAYER_R,
-      STD_TAB,
-      STD_ESC,
-      TD_ALT, MT_ENT,
-      BOTTOM_ROW
+      STANDARD_MODIFIERS
     ),
     THUMB_DEFAULT_LAYER_5x12
 ),
